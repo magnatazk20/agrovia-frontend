@@ -269,6 +269,17 @@ export default function Dashboard() {
           </span>
           <span className="av-action-label">Check-in</span>
         </a>
+
+        {/* Saque */}
+        <a className="av-action-card av-action-saque" href="/saque" onClick={(e) => { e.preventDefault(); navigate('/saque') }}>
+          <span className="av-action-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v13M7 11l5 5 5-5" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M4 20h16" stroke="#fff" strokeWidth="2.2" strokeLinecap="round"/>
+            </svg>
+          </span>
+          <span className="av-action-label">Saque</span>
+        </a>
       </div>
 
       {/* ── Brand links ── */}

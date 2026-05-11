@@ -190,9 +190,9 @@
   box-shadow: 0 14px 24px rgba(15, 60, 15, 0.30);
 }
 
-/* Main (Roleta) card — spans 2 rows */
+/* Main (Roleta) card — spans 3 rows */
 .av-action-main {
-  grid-row: span 2;
+  grid-row: span 3;
   flex-direction: column;
   justify-content: center;
   align-items: center;
