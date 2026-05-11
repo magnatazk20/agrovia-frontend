@@ -482,38 +482,43 @@ export default function Dashboard() {
       {showWelcomeModal && (
         <div className="av-welcome-backdrop" onClick={() => setShowWelcomeModal(false)}>
           <div className="av-welcome-card" onClick={(e) => e.stopPropagation()}>
-            <div className="av-welcome-title">Ganhe no primeiro passo</div>
-            <p className="av-welcome-desc">Ative um plano e comece a gerar renda diária na plataforma.</p>
 
-            <div className="av-welcome-kpis">
-              <div className="av-welcome-kpi">
-                <span>Depósito mín.</span>
+            <div className="av-welcome-header">
+              <span className="av-welcome-tag">🌱 Agrovia</span>
+              <h3 className="av-welcome-title">Renda diária no agronegócio</h3>
+            </div>
+
+            <div className="av-welcome-stats">
+              <div className="av-welcome-stat">
+                <span>Depósito mínimo</span>
                 <strong>R$ 20,00</strong>
               </div>
-              <div className="av-welcome-kpi">
-                <span>Saque mín.</span>
+              <div className="av-welcome-stat">
+                <span>Saque mínimo</span>
                 <strong>R$ 5,00</strong>
               </div>
-              <div className="av-welcome-kpi">
-                <span>Planos</span>
+              <div className="av-welcome-stat">
+                <span>Planos disponíveis</span>
                 <strong>{cyclePlans.length || '—'}</strong>
               </div>
             </div>
 
             {commissionLevels.length > 0 && (
-              <div className="av-welcome-commission">
-                <strong>Comissão por indicação</strong>
-                {commissionLevels.map((lvl) => (
-                  <div key={lvl.id} className="av-welcome-commission-row">
-                    <span>{lvl.name}</span>
-                    <span>{Number(lvl.commissionPercent).toFixed(1)}%</span>
-                  </div>
-                ))}
+              <div className="av-welcome-referral">
+                <div className="av-welcome-referral-title">Indique e ganhe</div>
+                <div className="av-welcome-referral-badges">
+                  {commissionLevels.map((lvl) => (
+                    <div key={lvl.id} className="av-welcome-referral-badge">
+                      <span>{lvl.name}</span>
+                      <strong>{Number(lvl.commissionPercent).toFixed(1)}%</strong>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 
             <button type="button" className="av-welcome-btn" onClick={() => setShowWelcomeModal(false)}>
-              Continuar
+              Começar agora
             </button>
           </div>
         </div>
