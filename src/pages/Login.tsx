@@ -25,6 +25,7 @@ export default function Login() {
   const [toastOpen, setToastOpen] = useState(false)
   const [toastMessage, setToastMessage] = useState('')
   const [toastType, setToastType] = useState<'success' | 'error'>('success')
+  const [successModal, setSuccessModal] = useState(false)
 
   const showToast = (msg: string, type: 'success' | 'error') => {
     setToastMessage(msg)
@@ -57,11 +58,7 @@ export default function Login() {
       storage.setItem('token', data.token ?? '')
       storage.setItem('user', JSON.stringify(data.user ?? {}))
 
-      showToast(data.message ?? 'Login realizado com sucesso.', 'success')
-
-      const returnTo = sessionStorage.getItem('loginReturnTo') ?? '/dashboard'
-      sessionStorage.removeItem('loginReturnTo')
-      setTimeout(() => navigate(returnTo), 1500)
+      setSuccessModal(true)
     } catch {
       setError('Não foi possível conectar ao servidor.')
       showToast('Não foi possível conectar ao servidor.', 'error')
@@ -175,6 +172,32 @@ export default function Login() {
       </form>
 
       {error ? <p className="lo-feedback lo-feedback--err">{error}</p> : null}
+
+      {successModal ? (
+        <div className="agrovia-modal-overlay">
+          <div className="agrovia-modal">
+            <div className="agrovia-modal__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#2e7d32" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <h2 className="agrovia-modal__title">Login realizado!</h2>
+            <p className="agrovia-modal__text">Bem-vindo de volta. Você será redirecionado agora.</p>
+            <button
+              type="button"
+              className="agrovia-modal__btn"
+              onClick={() => {
+                setSuccessModal(false)
+                const returnTo = sessionStorage.getItem('loginReturnTo') ?? '/dashboard'
+                sessionStorage.removeItem('loginReturnTo')
+                navigate(returnTo)
+              }}
+            >
+              Continuar
+            </button>
+          </div>
+        </div>
+      ) : null}
 
       <FloatingToast
         open={toastOpen}
