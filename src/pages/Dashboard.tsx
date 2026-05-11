@@ -341,7 +341,6 @@ export default function Dashboard() {
                         t.src = '/trk-banner.png'
                       }}
                     />
-                    <div className="av-product-stage">Estágio {String(idx + 1).padStart(2, '0')}</div>
                   </div>
 
                   {/* Details */}
