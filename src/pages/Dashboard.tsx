@@ -36,9 +36,8 @@ const formatBRL = (value: number) =>
   Number(value ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
 const BANNER_SLIDES = [
-  '/trk-banner.png',
-  '/trkbann.png',
-  '/trk-invite-banner.png',
+  'https://images.tridge.com/fit-in/filters:no_upscale()/200x200/company-logo/f1/a9/84/f1a9849a490c670cc5476c7647380b8fbbc4f02d/agrovia_logo.jpg',
+  'https://scontent-lga3-2.xx.fbcdn.net/v/t39.30808-6/236337905_154313306749463_7290663697296708353_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=2a1932&_nc_ohc=EfxIMDX9VJoQ7kNvwGBAFPs&_nc_oc=AdpgIFIfZjSGsTSdpkxNs6_cn_UDv-_RI0XHt6VY1poUIEAq5wVCSccX3kRf1NLXvts&_nc_zt=23&_nc_ht=scontent-lga3-2.xx&_nc_gid=FuUk3dfMH9VRU0estQ1VNQ&_nc_ss=7b2a8&oh=00_Af49fqyuW3RxLK6fD2-RJ2-1-0SSYsxayquZaCopYB-JGw&oe=6A0763C0',
 ]
 
 export default function Dashboard() {
