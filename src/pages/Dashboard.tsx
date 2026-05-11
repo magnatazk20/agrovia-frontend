@@ -50,6 +50,8 @@ export default function Dashboard() {
   const [initialStock, setInitialStock] = useState<Record<number, number>>({})
   const [selectedPlan, setSelectedPlan] = useState<CycleProduct | null>(null)
   const [isBuying, setIsBuying] = useState(false)
+  const [purchaseError, setPurchaseError] = useState<string | null>(null)
+  const [purchaseSuccess, setPurchaseSuccess] = useState<string | null>(null)
   const [showWelcomeModal, setShowWelcomeModal] = useState(true)
   const [commissionLevels, setCommissionLevels] = useState<CommissionLevel[]>([])
   const [bannerIndex, setBannerIndex] = useState(0)
@@ -129,6 +131,8 @@ export default function Dashboard() {
   }, [])
 
   const handleBuyCycle = (plan: CycleProduct) => {
+    setPurchaseError(null)
+    setPurchaseSuccess(null)
     setSelectedPlan(plan)
   }
 
@@ -168,7 +172,7 @@ export default function Dashboard() {
       }
 
       if (!response.ok || !data?.ok) {
-        alert(data?.error ?? 'Não foi possível adquirir este ciclo.')
+        setPurchaseError(data?.error ?? 'Não foi possível adquirir este ciclo.')
         return
       }
 
@@ -180,10 +184,9 @@ export default function Dashboard() {
             : p
         )
       )
-      alert(data?.message ?? 'Ciclo adquirido com sucesso.')
-      setSelectedPlan(null)
+      setPurchaseSuccess(data?.message ?? 'Ciclo adquirido com sucesso.')
     } catch {
-      alert('Erro de conexão ao adquirir ciclo.')
+      setPurchaseError('Erro de conexão ao adquirir ciclo.')
     } finally {
       setIsBuying(false)
     }
@@ -421,13 +424,41 @@ export default function Dashboard() {
               </div>
             </div>
 
+            {purchaseError && (
+              <div className="av-modal-feedback av-modal-feedback--error">
+                <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M12 8v4M12 16h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+                {purchaseError}
+              </div>
+            )}
+
+            {purchaseSuccess && (
+              <div className="av-modal-feedback av-modal-feedback--success">
+                <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2"/>
+                  <path d="M8 12l2.5 2.5L16 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                {purchaseSuccess}
+              </div>
+            )}
+
             <div className="av-modal-actions">
-              <button type="button" className="av-modal-btn-cancel" onClick={closePurchaseModal} disabled={isBuying}>
-                Cancelar
-              </button>
-              <button type="button" className="av-modal-btn-confirm" onClick={confirmBuyCycle} disabled={isBuying}>
-                {isBuying ? 'Processando...' : 'Confirmar'}
-              </button>
+              {purchaseSuccess ? (
+                <button type="button" className="av-modal-btn-confirm" style={{ gridColumn: '1 / -1' }} onClick={closePurchaseModal}>
+                  Fechar
+                </button>
+              ) : (
+                <>
+                  <button type="button" className="av-modal-btn-cancel" onClick={closePurchaseModal} disabled={isBuying}>
+                    Cancelar
+                  </button>
+                  <button type="button" className="av-modal-btn-confirm" onClick={confirmBuyCycle} disabled={isBuying}>
+                    {isBuying ? 'Processando...' : 'Confirmar'}
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
