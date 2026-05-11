@@ -406,8 +406,8 @@
 /* ── Products grid ── */
 .av-products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
   padding: 0 12px 14px;
 }
 
@@ -459,7 +459,7 @@
   grid-area: image;
   position: relative;
   aspect-ratio: 16 / 9;
-  min-height: 148px;
+  min-height: 90px;
   overflow: hidden;
   background: linear-gradient(135deg, rgba(102,187,106,0.14), rgba(67,160,71,0.12)), #d0e8d0;
 }
@@ -492,15 +492,15 @@
 
 .av-product-stage {
   position: absolute;
-  left: 10px;
-  top: 10px;
+  left: 6px;
+  top: 6px;
   z-index: 2;
-  padding: 5px 9px;
+  padding: 3px 7px;
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,0.48);
   background: rgba(255,255,255,0.92);
   color: var(--av-green-3);
-  font-size: 10px;
+  font-size: 9px;
   line-height: 1;
   font-weight: 900;
   box-shadow: 0 8px 16px rgba(5,22,8,0.16);
@@ -509,34 +509,34 @@
 /* Product details */
 .av-product-details {
   grid-area: details;
-  padding: 12px 12px 10px;
+  padding: 8px 8px 6px;
 }
 
 .av-product-header {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: start;
-  gap: 10px;
+  gap: 6px;
 }
 
 .av-product-name {
-  font-size: 17px;
+  font-size: 13px;
   line-height: 1.1;
   color: #0d2e0d;
   font-weight: 900;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
 .av-product-cycle {
-  font-size: 12px;
+  font-size: 10px;
   color: #4e6e50;
   font-weight: 700;
 }
 
 .av-product-price {
-  min-width: 86px;
-  padding: 7px 9px;
-  border-radius: 8px;
+  min-width: 64px;
+  padding: 5px 6px;
+  border-radius: 7px;
   border: 1px solid rgba(46, 125, 50, 0.18);
   background: linear-gradient(180deg, #ffffff, #f1f8f1);
   text-align: right;
@@ -546,7 +546,7 @@
 .av-product-price-label {
   display: block;
   color: #5a7060;
-  font-size: 9px;
+  font-size: 8px;
   line-height: 1;
   font-weight: 900;
   text-transform: uppercase;
@@ -554,9 +554,9 @@
 
 .av-product-price-value {
   display: block;
-  margin-top: 3px;
+  margin-top: 2px;
   color: #2e7d32;
-  font-size: 15px;
+  font-size: 12px;
   line-height: 1;
   font-weight: 900;
 }
@@ -565,21 +565,21 @@
 .av-product-stats {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 12px;
+  gap: 5px;
+  margin-top: 6px;
 }
 
 .av-stat-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 54px;
-  gap: 4px;
-  padding: 9px 10px;
+  min-height: 40px;
+  gap: 3px;
+  padding: 6px 7px;
   border: 1px solid rgba(165, 214, 167, 0.96);
   background: linear-gradient(180deg, #ffffff, #f4faf4);
   text-align: left;
-  border-radius: 9px;
+  border-radius: 7px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.72);
 }
 
@@ -589,7 +589,7 @@
 }
 
 .av-stat-label {
-  font-size: 10px;
+  font-size: 8px;
   line-height: 1;
   font-weight: 900;
   color: #4e6e50;
@@ -598,7 +598,7 @@
 }
 
 .av-stat-value {
-  font-size: 15px;
+  font-size: 12px;
   line-height: 1.1;
   font-weight: 900;
   color: #1a2e1a;
@@ -616,18 +616,18 @@
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-  margin: 0 12px 12px;
-  min-height: 44px;
-  padding: 0 14px;
-  border-radius: 10px;
+  gap: 6px;
+  margin: 0 8px 8px;
+  min-height: 36px;
+  padding: 0 10px;
+  border-radius: 8px;
   border: 0;
   background: linear-gradient(90deg, #66bb6a, #43a047 54%, #2e7d32);
   color: #ffffff;
-  font-size: 14px;
+  font-size: 11px;
   line-height: 1;
   font-weight: 900;
-  box-shadow: 0 12px 20px rgba(27, 94, 32, 0.22);
+  box-shadow: 0 8px 14px rgba(27, 94, 32, 0.22);
   cursor: pointer;
   transition: transform 0.18s ease, filter 0.18s ease;
   white-space: nowrap;
@@ -931,11 +931,7 @@
 /* ── Responsive ── */
 @media (max-width: 480px) {
   .av-product-stats {
-    gap: 6px;
-  }
-
-  .av-stat-value {
-    font-size: 14px;
+    gap: 4px;
   }
 
   .av-banner-stage {
@@ -959,8 +955,7 @@
 
 @media (min-width: 768px) {
   .av-products-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
+    gap: 14px;
   }
 
   .av-action-menu {
@@ -975,7 +970,19 @@
 @media (min-width: 1024px) {
   .av-products-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
   }
+
+  .av-product-name    { font-size: 16px; }
+  .av-product-cycle   { font-size: 12px; }
+  .av-product-details { padding: 12px 12px 10px; }
+  .av-product-media   { min-height: 130px; }
+  .av-product-price   { min-width: 80px; padding: 6px 8px; }
+  .av-product-price-value { font-size: 14px; }
+  .av-stat-value      { font-size: 14px; }
+  .av-stat-label      { font-size: 9px; }
+  .av-stat-item       { min-height: 50px; padding: 8px 9px; }
+  .av-purchase-btn    { min-height: 40px; font-size: 13px; margin: 0 12px 12px; padding: 0 12px; }
 
   .av-page {
     max-width: 900px;
