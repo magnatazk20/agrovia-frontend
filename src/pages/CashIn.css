@@ -1,0 +1,343 @@
+:root {
+  --dash-bg: #f0fdf4;
+  --dash-card: #ffffff;
+  --dash-card-2: #f0fdf4;
+  --dash-border: rgba(46, 125, 50, 0.22);
+  --dash-text: #1a1a1a;
+  --dash-muted: #4caf50;
+  --dash-green: #4caf50;
+  --dash-green-dim: rgba(46, 125, 50, 0.12);
+  --dash-red: #f87171;
+}
+
+.cashin-page {
+  min-height: 100vh;
+  background: var(--dash-bg);
+  color: var(--dash-text);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ── Content centralizado ── */
+.cashin-wrap {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 0 20px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: cashinFadeUp 0.4s ease-out both;
+}
+
+@keyframes cashinFadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Header ── */
+.cashin-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 0 6px;
+}
+
+.cashin-back-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 1.5px solid var(--dash-border);
+  background: var(--dash-card);
+  color: var(--dash-green);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px var(--dash-green-dim);
+}
+
+.cashin-back-btn:hover {
+  background: var(--dash-card-2);
+  transform: translateX(-2px);
+}
+
+.cashin-header-text h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--dash-text);
+  letter-spacing: -0.3px;
+}
+
+.cashin-header-text p {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: var(--dash-muted);
+  font-weight: 600;
+}
+
+/* ── Card ── */
+.cashin-card {
+  background: var(--dash-card);
+  border: 1px solid var(--dash-border);
+  border-radius: 22px;
+  padding: 22px 20px;
+  box-shadow: 0 4px 20px rgba(76, 175, 80, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Valor ── */
+.cashin-valor-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cashin-valor-label span {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--dash-text);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.cashin-valor-label small {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.75rem;
+  color: var(--dash-muted);
+  font-weight: 600;
+}
+
+.cashin-valor-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid var(--dash-green);
+  border-radius: 16px;
+  padding: 6px 16px;
+  background: var(--dash-card-2);
+  transition: box-shadow 0.2s;
+}
+
+.cashin-valor-input:focus-within {
+  box-shadow: 0 0 0 4px var(--dash-green-dim);
+}
+
+.cashin-valor-prefix {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--dash-green);
+  line-height: 1;
+}
+
+.cashin-valor-input input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--dash-text);
+  padding: 8px 0;
+  outline: none;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.cashin-valor-input input::placeholder {
+  color: #c8e6c9;
+}
+
+/* ── Chips ── */
+.cashin-chips {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.cashin-chip {
+  padding: 12px 2px;
+  border-radius: 12px;
+  border: 1.5px solid var(--dash-border);
+  background: var(--dash-card);
+  color: var(--dash-green);
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.cashin-chip:hover {
+  background: var(--dash-card-2);
+  border-color: var(--dash-green);
+  transform: translateY(-2px);
+}
+
+.cashin-chip.active {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 6px 18px rgba(76, 175, 80, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ── PIX row ── */
+.cashin-pix-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cashin-pix-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: var(--dash-card-2);
+  border: 1px solid var(--dash-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cashin-pix-info {
+  flex: 1;
+}
+
+.cashin-pix-info strong {
+  display: block;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--dash-text);
+}
+
+.cashin-pix-info p {
+  margin: 2px 0 0;
+  font-size: 0.76rem;
+  color: var(--dash-muted);
+  font-weight: 600;
+}
+
+.cashin-badge {
+  background: var(--dash-card-2);
+  color: var(--dash-green);
+  font-size: 0.7rem;
+  font-weight: 900;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ── Botão ── */
+.cashin-btn {
+  width: 100%;
+  min-height: 58px;
+  border: none;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 10px 28px rgba(76, 175, 80, 0.45);
+  transition: all 0.25s ease;
+  letter-spacing: 0.3px;
+}
+
+.cashin-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+  box-shadow: 0 16px 36px rgba(76, 175, 80, 0.55);
+}
+
+.cashin-btn:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.cashin-btn:disabled {
+  background: linear-gradient(135deg, #c8e6c9, #a5d6a7);
+  color: rgba(255, 255, 255, 0.7);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.cashin-spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Mensagem ── */
+.cashin-msg {
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: center;
+  border: 1.5px solid;
+}
+
+.cashin-msg.success {
+  background: var(--dash-card-2);
+  color: var(--dash-green);
+  border-color: rgba(76, 175, 80, 0.3);
+}
+
+.cashin-msg.error {
+  background: #fef2f2;
+  color: var(--dash-red);
+  border-color: rgba(248, 113, 113, 0.3);
+}
+
+/* ── Info extras ── */
+.cashin-info {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cashin-info-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: var(--dash-muted);
+  font-weight: 600;
+}
+
+/* ── Responsivo ── */
+@media (max-width: 420px) {
+  .cashin-chips {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .cashin-valor-input input {
+    font-size: 1.7rem;
+  }
+
+  .cashin-btn {
+    min-height: 54px;
+    font-size: 1.05rem;
+  }
+}

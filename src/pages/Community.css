@@ -1,0 +1,56 @@
+.community-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: inherit;
+  color: #5a3d1a;
+  padding: 22px 16px 92px;
+}
+
+.community-card {
+  max-width: 720px;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  padding: 18px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.community-description {
+  color: #5a3d1a;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  margin-bottom: 16px;
+}
+
+.community-btn {
+  border: none;
+  border-radius: 12px;
+  min-height: 46px;
+  padding: 12px 14px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+}
+
+.community-inline-message {
+  color: #5a3d1a;
+}
+
+.community-feedback {
+  margin-top: 12px;
+  color: #b45309;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .community-page {
+    padding: 24px 20px 32px;
+  }
+
+  .community-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,299 @@
+.team-report-page {
+  background:
+    radial-gradient(circle at 10% 5%, rgba(255, 211, 138, 0.55), transparent 32%),
+    radial-gradient(circle at 90% 10%, rgba(255, 138, 3, 0.28), transparent 34%),
+    linear-gradient(170deg, #fff5eb 0%, #ffe1b8 50%, #fec075 100%);
+  background-attachment: fixed;
+  color: #5a3d1a;
+  min-height: 100vh;
+  padding: 24px 16px 100px;
+}
+
+.team-report-page .team-tabs-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 16px;
+  padding: 6px;
+  margin-bottom: 12px;
+}
+
+.team-report-page .team-tabs-row {
+  display: flex;
+  gap: 8px;
+}
+
+.team-report-page .team-tab-btn {
+  flex: 1;
+  min-height: 44px;
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  color: #8a6b3f;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.team-report-page .team-tab-btn:hover {
+  color: #5a3d1a;
+  background: rgba(255, 138, 3, 0.12);
+}
+
+.team-report-page .team-tab-btn.active {
+  background: linear-gradient(135deg, #ff8a03, #f7a93b);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(255, 138, 3, 0.28);
+}
+
+.team-report-page .team-filter-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.team-report-page .team-filter-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 10px;
+  align-items: end;
+}
+
+.team-report-page .team-filter-row label {
+  display: grid;
+  gap: 6px;
+}
+
+.team-report-page .team-filter-row span {
+  font-size: 12px;
+  color: #8a6b3f;
+}
+
+.team-report-page .team-filter-row input {
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 138, 3, 0.3);
+  background: rgba(255, 245, 235, 0.8);
+  color: #5a3d1a;
+  padding: 0 10px;
+}
+
+.team-report-page .team-filter-row button {
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #ff8a03, #f7a93b);
+  color: #fff;
+  font-weight: 700;
+  padding: 0 16px;
+  cursor: pointer;
+}
+
+.team-report-page .team-toast {
+  position: fixed;
+  top: 78px;
+  right: 14px;
+  z-index: 999;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 12px 28px rgba(180, 83, 9, 0.2);
+  backdrop-filter: blur(6px);
+  animation: team-toast-in 0.18s ease;
+}
+
+.team-report-page .team-toast.success {
+  color: #fff;
+  background: rgba(22, 163, 74, 0.9);
+  border-color: rgba(74, 222, 128, 0.45);
+}
+
+.team-report-page .team-toast.error {
+  color: #fff;
+  background: rgba(220, 38, 38, 0.9);
+  border-color: rgba(248, 113, 113, 0.45);
+}
+
+@keyframes team-toast-in {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.team-report-page .team-kpis-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.team-report-page .team-kpi-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.team-report-page .team-kpi-card h3 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: #b45309;
+  font-weight: 600;
+}
+
+.team-report-page .team-kpi-card strong {
+  font-size: 20px;
+  color: #5a3d1a;
+}
+
+.team-report-page .team-levels-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.team-report-page .team-levels-card h2 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #5a3d1a;
+}
+
+.team-report-page .team-levels-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.team-report-page .team-level-item {
+  background: rgba(255, 245, 235, 0.6);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.team-report-page .team-level-item header {
+  font-weight: 700;
+  color: #ff8a03;
+  margin-bottom: 8px;
+}
+
+.team-report-page .team-level-item p {
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #5a3d1a;
+  font-size: 13px;
+}
+
+.team-report-page .team-level-item strong {
+  color: #5a3d1a;
+}
+
+.team-report-page .team-level-switch {
+  margin-top: 10px;
+  display: flex;
+  gap: 8px;
+}
+
+.team-report-page .team-level-switch button {
+  min-height: 36px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 138, 3, 0.3);
+  background: rgba(255, 255, 255, 0.85);
+  color: #5a3d1a;
+  padding: 0 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.team-report-page .team-level-switch button.active {
+  background: linear-gradient(135deg, #ff8a03, #f7a93b);
+  color: #fff;
+  border-color: transparent;
+}
+
+.team-report-page .team-kpi-single {
+  margin-bottom: 12px;
+}
+
+.team-report-page .team-members-list {
+  display: grid;
+  gap: 10px;
+}
+
+.team-report-page .team-member-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.team-report-page .team-member-item h4 {
+  margin: 0;
+  color: #5a3d1a;
+  font-size: 15px;
+}
+
+.team-report-page .team-member-item p {
+  margin: 2px 0;
+  color: #8a6b3f;
+  font-size: 13px;
+}
+
+.team-report-page .team-member-item small {
+  color: #8a6b3f;
+  font-size: 12px;
+}
+
+.team-report-page .team-member-right {
+  display: grid;
+  justify-items: end;
+  gap: 5px;
+}
+
+.team-report-page .team-member-right strong {
+  color: #5a3d1a;
+  font-size: 14px;
+}
+
+.team-report-page .team-member-right span {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.team-report-page .team-member-right span.ok {
+  color: #fff;
+  background: rgba(22, 163, 74, 0.85);
+  border: 1px solid rgba(74, 222, 128, 0.4);
+}
+
+.team-report-page .team-member-right span.pending {
+  color: #fff;
+  background: rgba(255, 138, 3, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.4);
+}
+
+.team-report-page .team-empty {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 14px;
+  padding: 28px 12px;
+  color: #8a6b3f;
+}
+
+@media (max-width: 640px) {
+  .team-report-page .team-filter-row { grid-template-columns: 1fr; }
+  .team-report-page .team-kpis-grid { grid-template-columns: 1fr; }
+  .team-report-page .team-level-switch { flex-wrap: wrap; }
+}

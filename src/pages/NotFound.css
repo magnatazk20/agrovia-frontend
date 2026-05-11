@@ -1,0 +1,21 @@
+.notfound-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.notfound-page h1 {
+  font-size: 56px;
+  margin: 0;
+}
+
+.notfound-page p {
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+.notfound-page a {
+  color: #ff8a03;
+}

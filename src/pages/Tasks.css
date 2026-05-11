@@ -1,0 +1,916 @@
+/* ═══════════════════════════════════════════════════════════════
+   TAREFAS — tema laranja / creme (mesmo do Dashboard)
+═══════════════════════════════════════════════════════════════ */
+
+/* ── Banner ── */
+.tasks-banner {
+  position: relative;
+  width: calc(100% + 28px);
+  margin: -14px -14px 0;
+  border-radius: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, #ff8a03 0%, #ffb347 55%, #f7d981 100%);
+  box-shadow: 0 14px 32px rgba(255, 138, 3, 0.30);
+  color: #ffffff;
+  padding: 22px 20px 24px;
+  min-height: 150px;
+  isolation: isolate;
+}
+
+.tasks-banner__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.tasks-banner__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.50;
+}
+
+.tasks-banner__glow--1 {
+  width: 200px;
+  height: 200px;
+  top: -70px;
+  right: -50px;
+  background: rgba(255, 255, 255, 0.50);
+}
+
+.tasks-banner__glow--2 {
+  width: 160px;
+  height: 160px;
+  bottom: -60px;
+  left: -40px;
+  background: rgba(255, 255, 255, 0.30);
+}
+
+.tasks-banner__icon {
+  position: absolute;
+  bottom: 10px;
+  right: 16px;
+  width: 80px;
+  height: 80px;
+  color: rgba(255, 255, 255, 0.18);
+  z-index: 0;
+  transform: rotate(-12deg);
+}
+
+.tasks-banner__kicker {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.tasks-banner__title {
+  position: relative;
+  z-index: 1;
+  margin: 6px 0 4px;
+  font-size: 1.6rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(180, 80, 0, 0.25);
+}
+
+.tasks-banner__subtitle {
+  position: relative;
+  z-index: 1;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 500;
+}
+
+.tasks-banner__actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* ── Botões ── */
+.tasks-btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tasks-btn--primary {
+  color: #ffffff;
+  background: linear-gradient(135deg, #ffb347 0%, #ff8a03 100%);
+  box-shadow: 0 6px 18px rgba(255, 138, 3, 0.30);
+}
+
+.tasks-btn--primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 10px 24px rgba(255, 138, 3, 0.40);
+}
+
+.tasks-btn--primary:active {
+  transform: translateY(0);
+}
+
+.tasks-btn--primary:disabled {
+  background: #d4c9b8;
+  color: #9a8a6f;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
+.tasks-btn--ghost {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+}
+
+.tasks-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.32);
+  transform: translateY(-1px);
+}
+
+.tasks-btn--done {
+  background: rgba(45, 122, 58, 0.15);
+  color: #2d7a3a;
+  border: 1px solid rgba(45, 122, 58, 0.30);
+  cursor: default;
+}
+
+.tasks-btn--done:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+/* ── Loading ── */
+.tasks-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px 20px;
+  color: #8a6b3f;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.tasks-loading__spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255, 138, 3, 0.20);
+  border-top-color: #ff8a03;
+  border-radius: 50%;
+  animation: tasks-spin 0.8s linear infinite;
+}
+
+@keyframes tasks-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Bloqueado / Erro ── */
+.tasks-blocked {
+  background: #ffffff;
+  border: 1px solid rgba(255, 138, 3, 0.25);
+  border-radius: 18px;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 520px;
+  margin: 0 auto;
+  box-shadow: 0 8px 28px rgba(180, 120, 40, 0.12);
+}
+
+.tasks-blocked__img-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+}
+
+.tasks-blocked__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tasks-blocked__img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(255, 255, 255, 0.85) 100%
+  );
+  pointer-events: none;
+}
+
+.tasks-blocked__body {
+  padding: 24px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.tasks-blocked strong {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #5a3d1a;
+}
+
+.tasks-blocked p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6b5230;
+  line-height: 1.65;
+  max-width: 400px;
+}
+
+.tasks-blocked__sub {
+  font-size: 0.82rem !important;
+  color: #a08050 !important;
+  font-style: italic;
+  border-top: 1px solid rgba(255, 138, 3, 0.15);
+  padding-top: 10px;
+  margin-top: 4px !important;
+}
+
+@media (max-width: 560px) {
+  .tasks-blocked__img-wrap {
+    height: 160px;
+  }
+
+  .tasks-blocked__body {
+    padding: 18px 16px 22px;
+  }
+}
+
+/* ── Métricas ── */
+.tasks-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.tasks-metric-card {
+  background: #ffffff;
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 14px;
+  padding: 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(180, 120, 40, 0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.tasks-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 138, 3, 0.12);
+}
+
+.tasks-metric-card__icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255, 138, 3, 0.10);
+  display: grid;
+  place-items: center;
+  color: #ff8a03;
+  margin-bottom: 8px;
+}
+
+.tasks-metric-card__icon--earn {
+  background: rgba(45, 122, 58, 0.10);
+  color: #2d7a3a;
+}
+
+.tasks-metric-card__label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #9a7a4a;
+}
+
+.tasks-metric-card__value {
+  display: block;
+  margin-top: 4px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #5a3d1a;
+}
+
+.tasks-metric-card__value--earn {
+  color: #2d7a3a;
+}
+
+/* ── Grid de tarefas ── */
+.tasks-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.tasks-card {
+  background: #ffffff;
+  border: 1px solid rgba(255, 138, 3, 0.20);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(180, 120, 40, 0.06);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.tasks-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 138, 3, 0.14);
+}
+
+.tasks-card--done {
+  border-color: rgba(45, 122, 58, 0.35);
+}
+
+.tasks-card__img-wrap {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+}
+
+.tasks-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.tasks-card__badge-done {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(45, 122, 58, 0.90);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  backdrop-filter: blur(4px);
+}
+
+.tasks-card__yt-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.62);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 1;
+}
+
+.tasks-card__body {
+  padding: 14px 16px 16px;
+}
+
+.tasks-card__name {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #5a3d1a;
+}
+
+.tasks-card__desc {
+  margin: 0 0 14px;
+  font-size: 0.84rem;
+  color: #8a6b3f;
+  line-height: 1.45;
+}
+
+.tasks-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.tasks-card__reward {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ff8a03;
+}
+
+.tasks-card__reward svg {
+  color: #ffb347;
+}
+
+/* ── Toast (mantido) ── */
+.floating-toast {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 9999;
+  background: linear-gradient(135deg, #ff8a03, #ffb347);
+  color: #ffffff;
+  border: 1px solid rgba(255, 179, 71, 0.55);
+  box-shadow: 0 12px 28px rgba(255, 138, 3, 0.35);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 700;
+  font-size: 13px;
+  animation: toastSlideIn 220ms ease-out;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) translateX(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+}
+
+/* ── Responsivo ── */
+@media (min-width: 560px) {
+  .tasks-banner {
+    width: calc(100% + 44px);
+    margin-left: -22px;
+    margin-right: -22px;
+    margin-top: -22px;
+    padding: 28px 26px 28px;
+  }
+
+  .tasks-banner__title {
+    font-size: 1.9rem;
+  }
+
+  .tasks-metrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .tasks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 420px) {
+  .tasks-banner__actions {
+    flex-direction: column;
+  }
+
+  .tasks-banner__actions .tasks-btn {
+    width: 100%;
+  }
+
+  .tasks-card__footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .tasks-card__reward {
+    justify-content: center;
+  }
+
+  .tasks-card__footer .tasks-btn {
+    width: 100%;
+  }
+}
+
+@media (min-width: 760px) {
+  .dash-main .tasks-banner {
+    margin-top: -22px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MINING TASK — card de vídeo / avaliação
+═══════════════════════════════════════════════════════════════ */
+
+.mining-card {
+  background: #ffffff;
+  border: 1px solid rgba(255, 138, 3, 0.20);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 2px 12px rgba(180, 120, 40, 0.06);
+}
+
+.mining-card__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.mining-card__header-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255, 138, 3, 0.10);
+  display: grid;
+  place-items: center;
+  color: #ff8a03;
+  flex-shrink: 0;
+}
+
+.mining-card__header-icon--star {
+  background: rgba(255, 179, 71, 0.15);
+  color: #ffb347;
+}
+
+.mining-card__header-label {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #5a3d1a;
+  flex: 1;
+}
+
+.mining-card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #9a7a4a;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 138, 3, 0.08);
+}
+
+.mining-card__status--playing {
+  background: rgba(255, 138, 3, 0.15);
+  color: #ff8a03;
+}
+
+.mining-card__status--done {
+  background: rgba(45, 122, 58, 0.12);
+  color: #2d7a3a;
+}
+
+.mining-card__status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #9a7a4a;
+  flex-shrink: 0;
+}
+
+.mining-card__status--playing .mining-card__status-dot {
+  background: #ff8a03;
+  animation: tasks-pulse 1.5s ease-in-out infinite;
+}
+
+.mining-card__status--done .mining-card__status-dot {
+  background: #2d7a3a;
+}
+
+@keyframes tasks-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.65); }
+}
+
+/* ── Player customizado TRK (YouTube) ── */
+.trk-player {
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  border: 1px solid rgba(255, 138, 3, 0.18);
+  background: #000;
+  position: relative;
+}
+
+.trk-player__screen {
+  position: relative;
+  width: 100%;
+  background: #000;
+  aspect-ratio: 16 / 9;
+}
+
+.trk-player__iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* Overlay clicável por cima do iframe */
+.trk-player__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Botão play grande central */
+.trk-player__big-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  transition: background 0.2s ease;
+}
+
+.trk-player__big-play:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.trk-player__big-play svg {
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+  transition: transform 0.15s ease;
+}
+
+.trk-player__big-play:hover svg {
+  transform: scale(1.1);
+}
+
+/* Overlay concluído */
+.trk-player__done-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* Barra de controles */
+.trk-player__controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: linear-gradient(180deg, rgba(15, 10, 5, 0.92), rgba(15, 10, 5, 0.98));
+}
+
+.trk-player__btn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.trk-player__btn:hover:not(:disabled) {
+  background: rgba(255, 138, 3, 0.2);
+  color: #ff8a03;
+}
+
+.trk-player__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.trk-player__time {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+/* Volume */
+.trk-player__volume-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+/* Badge YouTube */
+.trk-player__badge-yt {
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
+  opacity: 0.7;
+}
+
+/* ── Progresso ── */
+.mining-card__progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.mining-card__progress-info span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #9a7a4a;
+}
+
+.mining-card__progress-info strong {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #5a3d1a;
+}
+
+.mining-card__progress-track {
+  height: 10px;
+  background: rgba(255, 138, 3, 0.12);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.mining-card__progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffb347, #ff8a03);
+  border-radius: inherit;
+  transition: width 0.4s ease;
+}
+
+/* ── Controles ── */
+.mining-card__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.mining-card__remaining {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #9a7a4a;
+}
+
+.mining-card__remaining svg {
+  color: #c9a96e;
+}
+
+/* Botão pausar (variante) */
+.tasks-btn--pause {
+  color: #5a3d1a;
+  background: rgba(255, 138, 3, 0.12);
+  border: 1px solid rgba(255, 138, 3, 0.25);
+}
+
+.tasks-btn--pause:hover {
+  background: rgba(255, 138, 3, 0.20);
+}
+
+/* ── Estrelas de avaliação ── */
+.mining-card__stars {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 10px 0;
+}
+
+.mining-star {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  border: 1px solid rgba(201, 169, 110, 0.30);
+  background: rgba(255, 138, 3, 0.04);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.mining-star:hover:not(:disabled) {
+  transform: scale(1.12);
+  background: rgba(255, 138, 3, 0.10);
+  border-color: rgba(255, 138, 3, 0.40);
+}
+
+.mining-star--active {
+  background: rgba(255, 138, 3, 0.12);
+  border-color: rgba(255, 138, 3, 0.45);
+  box-shadow: 0 2px 8px rgba(255, 138, 3, 0.18);
+}
+
+.mining-star:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Botão submit avaliação */
+.mining-card__submit-btn {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+/* ── Status da tarefa (rodapé) ── */
+.mining-card__task-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0 0;
+  border-top: 1px solid rgba(255, 138, 3, 0.12);
+}
+
+.mining-card__task-status-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #9a7a4a;
+}
+
+.mining-card__task-status-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #5a3d1a;
+}
+
+.mining-card__task-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mining-card__task-status-dot--done {
+  background: #2d7a3a;
+}
+
+.mining-card__task-status-dot--watching {
+  background: #ff8a03;
+  animation: tasks-pulse 1.5s ease-in-out infinite;
+}
+
+.mining-card__task-status-dot--waiting {
+  background: #c9a96e;
+}
+
+.mining-card__task-status-dot--loading {
+  background: #ff8a03;
+  animation: tasks-pulse 0.8s ease-in-out infinite;
+}
+
+/* ── Mensagem inline ── */
+.mining-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(255, 138, 3, 0.08);
+  border: 1px solid rgba(255, 138, 3, 0.18);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #8a6b3f;
+}
+
+.mining-message svg {
+  color: #ff8a03;
+  flex-shrink: 0;
+}

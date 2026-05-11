@@ -1,0 +1,474 @@
+import { useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Dashboard from './pages/Dashboard'
+import Roleta from './pages/Roleta'
+import RoletaTestAutoSpin from './pages/RoletaTestAutoSpin'
+import Sinuca from './pages/Sinuca'
+import CashIn from './pages/CashIn'
+import CashInCheckout from './pages/CashInCheckout'
+import Tasks from './pages/Tasks'
+import MiningTask from './pages/MiningTask'
+import Vip from './pages/Vip'
+import VipCheckout from './pages/VipCheckout'
+import Invite from './pages/Invite'
+import Profile from './pages/Profile'
+import InvestmentOrders from './pages/InvestmentOrders'
+import BankCards from './pages/BankCards'
+import TeamReport from './pages/TeamReport'
+import Position from './pages/Position'
+import Checkin from './pages/Checkin'
+import NotFound from './pages/NotFound'
+import Community from './pages/Community'
+import TaxDeclaration from './pages/TaxDeclaration'
+import WithdrawPassword from './pages/WithdrawPassword'
+import ChangePassword from './pages/ChangePassword'
+import Withdraw from './pages/Withdraw'
+import WithdrawReceipt from './pages/WithdrawReceipt'
+import GiftVouchers from './pages/GiftVouchers'
+import RedeemCode from './pages/RedeemCode'
+import CaixasBox from './pages/CaixasBox'
+import CycleProducts from './pages/CycleProducts'
+import CycleProductDetail from './pages/CycleProductDetail'
+import MiniTasks from './pages/MiniTasks'
+import VipRules from './pages/VipRules'
+import Statement from './pages/Statement'
+import Manual from './pages/Manual'
+import MonthlySalary from './pages/MonthlySalary'
+import RegistroDoDia from './pages/RegistroDoDia'
+import RegistrosTarefas from './pages/RegistrosTarefas'
+import TeamExpansion from './pages/TeamExpansion'
+import Admin from './pages/Admin'
+import AdminUsers from './pages/AdminUsers'
+import AdminUserDetails from './pages/AdminUserDetails'
+import AdminUserHistory from './pages/AdminUserHistory'
+import AdminWithdrawConfig from './pages/AdminWithdrawConfig'
+import AdminRankings from './pages/AdminRankings'
+import AdminLogs from './pages/AdminLogs'
+import AdminSecurityLogs from './pages/AdminSecurityLogs'
+import AdminPendingWithdrawals from './pages/AdminPendingWithdrawals'
+import AdminUserWithdrawals from './pages/AdminUserWithdrawals'
+import AdminRouletteCode from './pages/AdminRouletteCode'
+import AdminGiftCode from './pages/AdminGiftCode'
+import AdminDeposits from './pages/AdminDeposits'
+import AdminDepositConfig from './pages/AdminDepositConfig'
+import AdminCommissionConfig from './pages/AdminCommissionConfig'
+import AdminTelegramConfig from './pages/AdminTelegramConfig'
+import AdminCycleProducts from './pages/AdminCycleProducts'
+import AdminMonthlySalary from './pages/AdminMonthlySalary'
+import AdminSiteBranding from './pages/AdminSiteBranding'
+import AdminCommunityLinks from './pages/AdminCommunityLinks'
+import AdminMiniTasks from './pages/AdminMiniTasks'
+import AdminRouletteProbabilities from './pages/AdminRouletteProbabilities'
+import AdminCaixasBox from './pages/AdminCaixasBox'
+import AdminShopProducts from './pages/AdminShopProducts'
+import AdminCorrectionLogs from './pages/AdminCorrectionLogs'
+import AdminVipLevels from './pages/AdminVipLevels'
+import AdminTaskCommissions from './pages/AdminTaskCommissions'
+import AdminVipRefunds from './pages/AdminVipRefunds'
+import AdminVipPhotos from './pages/AdminVipPhotos'
+import About from './pages/About'
+import Introduction from './pages/Introduction'
+import ProtectedLayout from './components/ProtectedLayout'
+import AdminProtectedLayout from './components/AdminProtectedLayout'
+import RequireAuth from './components/RequireAuth'
+import RequireMaxAdmin from './components/RequireMaxAdmin'
+import './App.css'
+
+export default function App() {
+  useEffect(() => {
+    const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3333'
+    const sendHeartbeat = () => {
+      try {
+        const raw = localStorage.getItem('user') ?? sessionStorage.getItem('user')
+        if (!raw) return // nao envia se nao estiver logado
+        const userId = String((JSON.parse(raw) as { id?: unknown })?.id ?? '')
+        if (!userId || userId === '0') return // nao envia se nao tiver userId valido
+        fetch(`${API_URL}/api/presence/heartbeat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId }),
+        }).catch(() => {})
+      } catch {
+        // silencioso
+      }
+    }
+    sendHeartbeat()
+    const interval = setInterval(sendHeartbeat, 30_000)
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/cadastro" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/roleta" element={<Roleta />} />
+        <Route path="/roleta-test" element={<RoletaTestAutoSpin />} />
+        <Route path="/sinuca" element={<Sinuca />} />
+        <Route path="/cashin" element={<CashIn />} />
+        <Route path="/cashin/checkout" element={<CashInCheckout />} />
+        <Route path="/tasks" element={<Tasks />} />
+        <Route path="/tasks/mining/:taskId" element={<MiningTask />} />
+        <Route path="/vip" element={<Vip />} />
+        <Route path="/vip/checkout/:id" element={<VipCheckout />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/introducao" element={<Introduction />} />
+        <Route path="/invite" element={<Invite />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/mini-tasks" element={<MiniTasks />} />
+        <Route path="/vip-rules" element={<VipRules />} />
+        <Route path="/statement" element={<Statement />} />
+        <Route path="/manual" element={<Manual />} />
+        <Route path="/investment-orders" element={<InvestmentOrders />} />
+        <Route
+          path="/monthly-salary"
+          element={(
+            <RequireAuth>
+              <MonthlySalary />
+            </RequireAuth>
+          )}
+        />
+        <Route
+          path="/salario-mensal"
+          element={(
+            <RequireAuth>
+              <MonthlySalary />
+            </RequireAuth>
+          )}
+        />
+        <Route path="/bank-cards" element={<BankCards />} />
+        <Route
+          path="/registro-do-dia"
+          element={(
+            <RequireAuth>
+              <RegistroDoDia />
+            </RequireAuth>
+          )}
+        />
+        <Route
+          path="/registros-tarefas"
+          element={(
+            <RequireAuth>
+              <RegistrosTarefas />
+            </RequireAuth>
+          )}
+        />
+        <Route path="/team-report" element={<TeamReport />} />
+        <Route
+          path="/team-expansion"
+          element={(
+            <RequireAuth>
+              <TeamExpansion />
+            </RequireAuth>
+          )}
+        />
+        <Route path="/position" element={<Position />} />
+        <Route path="/checkin" element={<Checkin />} />
+        <Route path="/community" element={<Community />} />
+        <Route path="/tax-declaration" element={<TaxDeclaration />} />
+        <Route path="/withdraw-password" element={<WithdrawPassword />} />
+        <Route path="/change-password" element={<ChangePassword />} />
+        <Route
+          path="/envelope"
+          element={(
+            <RequireAuth>
+              <GiftVouchers />
+            </RequireAuth>
+          )}
+        />
+        <Route
+          path="/gift-vouchers"
+          element={(
+            <RequireAuth>
+              <GiftVouchers />
+            </RequireAuth>
+          )}
+        />
+        <Route
+          path="/redeem-code"
+          element={(
+            <RequireAuth>
+              <RedeemCode />
+            </RequireAuth>
+          )}
+        />
+        <Route
+          path="/caixas-box"
+          element={(
+            <RequireAuth>
+              <CaixasBox />
+            </RequireAuth>
+          )}
+        />
+        <Route
+          path="/cycle-products"
+          element={(
+            <RequireAuth>
+              <CycleProducts />
+            </RequireAuth>
+          )}
+        />
+        <Route
+          path="/ciclo/:id"
+          element={(
+            <RequireAuth>
+              <CycleProductDetail />
+            </RequireAuth>
+          )}
+        />
+        <Route
+          path="/saque"
+          element={(
+            <RequireAuth>
+              <Withdraw />
+            </RequireAuth>
+          )}
+        />
+        <Route
+          path="/saque/comprovante"
+          element={(
+            <RequireAuth>
+              <WithdrawReceipt />
+            </RequireAuth>
+          )}
+        />
+        <Route
+          path="/adf"
+          element={(
+            <RequireMaxAdmin>
+              <Admin />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/users"
+          element={(
+            <RequireMaxAdmin>
+              <AdminUsers />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/users/:id"
+          element={(
+            <RequireMaxAdmin>
+              <AdminUserDetails />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/users/:id/history"
+          element={(
+            <RequireMaxAdmin>
+              <AdminUserHistory />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/withdraw-config"
+          element={(
+            <RequireMaxAdmin>
+              <AdminWithdrawConfig />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/rankings"
+          element={(
+            <RequireMaxAdmin>
+              <AdminRankings />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/logs"
+          element={(
+            <RequireMaxAdmin>
+              <AdminLogs />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/security-logs"
+          element={(
+            <RequireMaxAdmin>
+              <AdminSecurityLogs />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/roulette-code"
+          element={(
+            <RequireMaxAdmin>
+              <AdminRouletteCode />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/gift-codes"
+          element={(
+            <RequireMaxAdmin>
+              <AdminGiftCode />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/withdrawals/users"
+          element={(
+            <RequireMaxAdmin>
+              <AdminUserWithdrawals />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/withdrawals/pending"
+          element={(
+            <RequireMaxAdmin>
+              <AdminPendingWithdrawals />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/deposits"
+          element={(
+            <RequireMaxAdmin>
+              <AdminDeposits />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/deposit-config"
+          element={(
+            <RequireMaxAdmin>
+              <AdminDepositConfig />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/commission-config"
+          element={(
+            <RequireMaxAdmin>
+              <AdminCommissionConfig />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/telegram-config"
+          element={(
+            <RequireMaxAdmin>
+              <AdminTelegramConfig />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/cycle-products"
+          element={(
+            <RequireMaxAdmin>
+              <AdminCycleProducts />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/monthly-salary"
+          element={(
+            <RequireMaxAdmin>
+              <AdminMonthlySalary />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/site-branding"
+          element={(
+            <RequireMaxAdmin>
+              <AdminSiteBranding />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/community-links"
+          element={(
+            <RequireMaxAdmin>
+              <AdminCommunityLinks />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/mini-tasks"
+          element={(
+            <RequireMaxAdmin>
+              <AdminMiniTasks />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/roulette-probabilities"
+          element={(
+            <RequireMaxAdmin>
+              <AdminRouletteProbabilities />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/caixas-box"
+          element={(
+            <RequireMaxAdmin>
+              <AdminCaixasBox />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/shop-products"
+          element={(
+            <RequireMaxAdmin>
+              <AdminShopProducts />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/correction-logs"
+          element={(
+            <RequireMaxAdmin>
+              <AdminCorrectionLogs />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/vip-levels"
+          element={(
+            <RequireMaxAdmin>
+              <AdminVipLevels />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/task-commissions"
+          element={(
+            <RequireMaxAdmin>
+              <AdminTaskCommissions />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/vip-refunds"
+          element={(
+            <RequireMaxAdmin>
+              <AdminVipRefunds />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route
+          path="/adf/vip-photos"
+          element={(
+            <RequireMaxAdmin>
+              <AdminVipPhotos />
+            </RequireMaxAdmin>
+          )}
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  )
+}

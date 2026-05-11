@@ -1,0 +1,18 @@
+/* Layout component styles */
+.layout-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-main {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .layout-main {
+    padding: 2rem;
+  }
+}

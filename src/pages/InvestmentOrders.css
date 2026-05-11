@@ -1,0 +1,438 @@
+:root {
+  --dash-green: #4caf50;
+  --dash-green-dark: #2e7d32;
+  --dash-green-light: #81c784;
+  --dash-green-dim: rgba(46, 125, 50, 0.12);
+  --dash-border: rgba(46, 125, 50, 0.22);
+  --dash-text: #1a1a1a;
+  --dash-bg: #f0fdf4;
+}
+
+.orders-page {
+  min-height: 100vh;
+  background: var(--dash-bg);
+  color: var(--dash-text);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.orders-wrap {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 16px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: fadeUp 0.4s ease-out both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Header ── */
+.orders-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 0 6px;
+}
+
+.orders-back-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 1.5px solid var(--dash-border);
+  background: #fff;
+  color: var(--dash-green);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px var(--dash-green-dim);
+}
+
+.orders-back-btn:hover {
+  background: #f0fdf4;
+  transform: translateX(-2px);
+}
+
+.orders-header-text {
+  flex: 1;
+}
+
+.orders-header-text h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--dash-text);
+  letter-spacing: -0.3px;
+}
+
+.orders-header-text p {
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: var(--dash-green);
+  font-weight: 600;
+}
+
+.orders-header-spacer {
+  width: 42px;
+}
+
+/* ── Summary Grid ── */
+.orders-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.orders-summary-card {
+  background: #fff;
+  border: 1px solid var(--dash-border);
+  border-radius: 16px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.1);
+}
+
+.orders-summary-card.highlight {
+  border-color: var(--dash-green);
+  background: #f0fdf4;
+}
+
+.orders-summary-label {
+  font-size: 0.72rem;
+  color: #888;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.orders-summary-value {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: var(--dash-text);
+}
+
+.orders-summary-value.green {
+  color: var(--dash-green);
+}
+
+/* ── Filtros ── */
+.orders-filters-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.orders-filters-row button {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: 1.5px solid var(--dash-border);
+  background: #fff;
+  color: var(--dash-green);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.orders-filters-row button.active {
+  background: linear-gradient(135deg, var(--dash-green), var(--dash-green-dark));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(76, 175, 80, 0.35);
+}
+
+.orders-filters-row button:hover:not(.active) {
+  background: #f0fdf4;
+}
+
+/* ── Content ── */
+.orders-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 80px;
+}
+
+/* ── Loading ── */
+.orders-loading {
+  text-align: center;
+  padding: 48px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.orders-loading p {
+  color: var(--dash-green);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.orders-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(76, 175, 80, 0.2);
+  border-top-color: var(--dash-green);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Error ── */
+.orders-error-card {
+  background: #fff;
+  border: 1.5px solid #f87171;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #b91c1c;
+}
+
+/* ── Empty ── */
+.orders-empty-card {
+  background: #fff;
+  border: 1px solid var(--dash-border);
+  border-radius: 20px;
+  padding: 40px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 20px rgba(76, 175, 80, 0.1);
+}
+
+.orders-empty-icon {
+  font-size: 3rem;
+}
+
+.orders-empty-card h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--dash-text);
+}
+
+.orders-empty-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 600;
+}
+
+.orders-empty-card button {
+  margin-top: 8px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--dash-green), var(--dash-green-dark));
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(76, 175, 80, 0.35);
+  transition: all 0.2s;
+}
+
+.orders-empty-card button:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+}
+
+/* ── Orders List ── */
+.orders-list {
+  display: grid;
+  gap: 12px;
+}
+
+/* ── Order Card ── */
+.order-card {
+  background: #fff;
+  border: 1px solid var(--dash-border);
+  border-radius: 18px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.1);
+  transition: all 0.2s;
+}
+
+.order-card:hover {
+  box-shadow: 0 8px 28px rgba(76, 175, 80, 0.18);
+  transform: translateY(-2px);
+}
+
+.order-card--done {
+  border-color: var(--dash-green);
+  background: #f0fdf4;
+}
+
+/* ── Order Card Header ── */
+.order-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.order-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.order-card-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--dash-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-card-id {
+  font-size: 0.72rem;
+  color: #aaa;
+  font-weight: 600;
+  font-family: monospace;
+}
+
+/* ── Status Badge ── */
+.order-status {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 4px 12px;
+  border: 1.5px solid transparent;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.order-status.ongoing {
+  color: var(--dash-green);
+  border-color: var(--dash-border);
+  background: #f0fdf4;
+}
+
+.order-status.completed {
+  color: #fff;
+  border-color: var(--dash-green);
+  background: linear-gradient(135deg, var(--dash-green), var(--dash-green-dark));
+}
+
+/* ── Progress ── */
+.order-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.order-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-progress-label {
+  font-size: 0.75rem;
+  color: #888;
+  font-weight: 700;
+}
+
+.order-progress-pct {
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: var(--dash-green);
+}
+
+.order-progress-track {
+  height: 8px;
+  background: #f0fdf4;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--dash-border);
+}
+
+.order-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--dash-green-light), var(--dash-green));
+  transition: width 0.6s ease;
+}
+
+.order-progress-fill.done {
+  background: linear-gradient(90deg, var(--dash-green), var(--dash-green-dark));
+}
+
+.order-progress-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #aaa;
+  font-weight: 600;
+}
+
+/* ── Metrics ── */
+.order-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 16px;
+  border-top: 1px solid rgba(76, 175, 80, 0.12);
+  padding-top: 12px;
+}
+
+.order-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.order-metric-label {
+  font-size: 0.7rem;
+  color: #888;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.order-metric-value {
+  font-size: 0.92rem;
+  font-weight: 900;
+  color: var(--dash-text);
+}
+
+.order-metric-value.green {
+  color: var(--dash-green);
+}
+
+/* ── Responsive ── */
+@media (max-width: 400px) {
+  .order-metrics {
+    grid-template-columns: 1fr;
+  }
+}

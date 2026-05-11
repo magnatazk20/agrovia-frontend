@@ -1,0 +1,253 @@
+.admin-mini-tasks-page .admin-users-header p {
+  color: #8a6b3f;
+  margin-top: 6px;
+}
+
+.admin-mini-wrap {
+  display: grid;
+  gap: 16px;
+}
+
+.admin-mini-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 14px;
+  padding: 16px;
+  backdrop-filter: blur(4px);
+}
+
+.admin-mini-card-title {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: #5a3d1a;
+}
+
+.admin-mini-form-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.admin-mini-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-mini-field label {
+  font-size: 12px;
+  color: #8a6b3f;
+  font-weight: 600;
+}
+
+.admin-mini-field input[type='text'],
+.admin-mini-field input[type='number'],
+.admin-mini-field input[type='url'] {
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  background: rgba(255, 245, 235, 0.8);
+  color: #5a3d1a;
+  padding: 0 12px;
+  outline: none;
+  font-size: 13px;
+}
+
+.admin-mini-field input[type='text']:focus,
+.admin-mini-field input[type='number']:focus,
+.admin-mini-field input[type='url']:focus {
+  border-color: rgba(255, 138, 3, 0.8);
+  box-shadow: 0 0 0 3px rgba(255, 138, 3, 0.15);
+}
+
+.admin-mini-field input[type='url']::placeholder {
+  color: #a08050;
+}
+
+.admin-mini-image-preview {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-mini-image-preview img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  background: rgba(255, 245, 235, 0.8);
+}
+
+.admin-mini-image-preview .admin-mini-image-error {
+  font-size: 11px;
+  color: #b91c1c;
+}
+
+.admin-mini-table-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  background: rgba(255, 245, 235, 0.8);
+  vertical-align: middle;
+}
+
+.admin-mini-no-img {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px dashed rgba(255, 138, 3, 0.28);
+  color: #8a6b3f;
+  font-size: 16px;
+}
+
+.admin-mini-field-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: end;
+  margin-bottom: 6px;
+  color: #5a3d1a;
+  font-size: 13px;
+}
+
+.admin-mini-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.admin-mini-table-wrap {
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 138, 3, 0.18);
+}
+
+.admin-mini-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+}
+
+.admin-mini-table thead th {
+  text-align: left;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #8a6b3f;
+  background: rgba(255, 245, 235, 0.8);
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 138, 3, 0.22);
+}
+
+.admin-mini-table tbody td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 138, 3, 0.12);
+  color: #5a3d1a;
+  font-size: 13px;
+}
+
+.admin-mini-table tbody tr:hover {
+  background: rgba(255, 245, 235, 0.5);
+}
+
+.admin-mini-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(255, 138, 3, 0.35);
+  background: rgba(255, 138, 3, 0.12);
+  color: #ff8a03;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.admin-mini-status {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.admin-mini-status.active {
+  color: #2d7a3a;
+}
+
+.admin-mini-status.inactive {
+  color: #b91c1c;
+}
+
+.admin-mini-row-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ── Botões genéricos (.btn) ──────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #ffb347, #ff8a03);
+  color: #fff;
+  border-color: rgba(255, 138, 3, 0.45);
+}
+
+.btn.primary:hover:not(:disabled) {
+  filter: brightness(1.05);
+}
+
+.btn.ghost {
+  background: rgba(255, 245, 235, 0.8);
+  color: #5a3d1a;
+  border-color: rgba(255, 138, 3, 0.22);
+}
+
+.btn.ghost:hover:not(:disabled) {
+  background: #fff5eb;
+  border-color: rgba(255, 138, 3, 0.4);
+}
+
+.btn.danger {
+  background: rgba(185, 28, 28, 0.12);
+  color: #b91c1c;
+  border-color: rgba(185, 28, 28, 0.35);
+}
+
+.btn.danger:hover:not(:disabled) {
+  background: rgba(185, 28, 28, 0.22);
+  border-color: rgba(185, 28, 28, 0.55);
+}
+
+@media (max-width: 840px) {
+  .admin-mini-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-mini-field-checkbox {
+    align-self: start;
+    margin-bottom: 0;
+  }
+}

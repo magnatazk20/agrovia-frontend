@@ -1,0 +1,100 @@
+.floating-toast-wrap {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 2500;
+  pointer-events: none;
+}
+
+.floating-toast {
+  position: relative;
+  min-width: 280px;
+  max-width: min(92vw, 420px);
+  border-radius: 12px;
+  padding: 12px 42px 12px 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  pointer-events: auto;
+  border: 1px solid transparent;
+  box-shadow: 0 14px 34px rgba(2, 6, 23, 0.35);
+  animation: floating-toast-in 180ms ease-out;
+}
+
+.floating-toast p {
+  margin: 0;
+  color: #f8fafc;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.floating-toast-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  margin-top: 5px;
+  flex: 0 0 auto;
+}
+
+.floating-toast-success {
+  background: linear-gradient(180deg, rgba(21, 128, 61, 0.96), rgba(20, 83, 45, 0.92));
+  border-color: rgba(74, 222, 128, 0.55);
+}
+
+.floating-toast-success .floating-toast-dot {
+  background: #86efac;
+}
+
+.floating-toast-error {
+  background: linear-gradient(180deg, rgba(185, 28, 28, 0.96), rgba(127, 29, 29, 0.92));
+  border-color: rgba(248, 113, 113, 0.58);
+}
+
+.floating-toast-error .floating-toast-dot {
+  background: #fca5a5;
+}
+
+.floating-toast-close {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  background: transparent;
+  color: #f8fafc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.15rem;
+  line-height: 1;
+  padding: 0;
+}
+
+.floating-toast-close:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+@keyframes floating-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 640px) {
+  .floating-toast-wrap {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+  }
+
+  .floating-toast {
+    min-width: 0;
+    max-width: 100%;
+  }
+}

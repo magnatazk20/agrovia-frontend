@@ -1,0 +1,784 @@
+.admin-page {
+  min-height: 100vh;
+  color: #5a3d1a;
+  display: grid;
+  grid-template-columns: 272px minmax(0, 1fr);
+}
+
+.admin-content {
+  width: 100%;
+  margin-left: 0;
+  padding: 20px 20px 28px;
+  box-sizing: border-box;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.admin-header h1 {
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+
+.admin-subtitle {
+  margin: 8px 0 0;
+  color: #8a6b3f;
+}
+
+.admin-header-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-chip {
+  background: rgba(255, 255, 255, 0.85);
+  color: #5a3d1a;
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.admin-chip.soft {
+  background: rgba(255, 245, 235, 0.6);
+  border-color: rgba(255, 138, 3, 0.18);
+}
+
+.admin-chip--online {
+  background: rgba(45, 122, 58, 0.15);
+  border-color: rgba(45, 122, 58, 0.4);
+  color: #2d7a3a;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-online-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  flex-shrink: 0;
+  animation: admin-pulse-dot 1.6s ease-in-out infinite;
+}
+
+@keyframes admin-pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.admin-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.admin-kpi-grid .admin-kpi-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-kpi-label {
+  font-size: 0.88rem;
+  color: #8a6b3f;
+  font-weight: 600;
+}
+
+.admin-kpi-value {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #5a3d1a;
+  margin-top: 4px;
+}
+
+.admin-kpi-sub {
+  font-size: 0.85rem;
+  color: #8a6b3f;
+  margin-top: 2px;
+}
+
+.admin-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.admin-kpi-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.admin-kpi-card h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #8a6b3f;
+  font-weight: 600;
+}
+
+.admin-kpi-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.45rem;
+  color: #5a3d1a;
+}
+
+.admin-kpi-card p {
+  margin: 6px 0 0;
+  font-size: 0.82rem;
+  color: #8a6b3f;
+}
+
+/* segunda linha de KPIs (depósitos e saques hoje/mês) */
+.admin-kpis--split {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+/* card destaque — cadastros hoje */
+.admin-kpi-card--highlight {
+  border-color: rgba(255, 138, 3, 0.45);
+  background: rgba(255, 255, 255, 0.90);
+}
+
+.admin-kpi-card--highlight strong {
+  color: #ff8a03;
+}
+
+/* cards de depósito */
+.admin-kpi-card--deposit {
+  border-color: rgba(45, 122, 58, 0.45);
+  background: rgba(255, 255, 255, 0.90);
+}
+
+.admin-kpi-card--deposit strong {
+  color: #2d7a3a;
+}
+
+.admin-kpi-card--deposit p {
+  color: #2d7a3a;
+}
+
+/* cards de saque */
+.admin-kpi-card--withdraw {
+  border-color: rgba(185, 28, 28, 0.45);
+  background: rgba(255, 255, 255, 0.90);
+}
+
+.admin-kpi-card--withdraw strong {
+  color: #b91c1c;
+}
+
+.admin-kpi-card--withdraw p {
+  color: #b91c1c;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 12px;
+}
+
+.admin-panel {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 12px;
+  padding: 14px;
+}
+
+.admin-panel-wide {
+  grid-column: 1 / -1;
+}
+
+.admin-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.admin-panel-head h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #5a3d1a;
+}
+
+.admin-panel-head span {
+  color: #8a6b3f;
+  font-size: 0.82rem;
+}
+
+.admin-shortcuts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.admin-shortcuts button {
+  background: rgba(255, 255, 255, 0.85);
+  color: #5a3d1a;
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 700;
+  text-align: left;
+}
+
+.admin-shortcuts button:hover {
+  background: rgba(255, 245, 235, 0.9);
+}
+
+.admin-status-list {
+  margin: 0;
+  padding-left: 18px;
+  color: #5a3d1a;
+  line-height: 1.8;
+}
+
+.admin-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 138, 3, 0.12);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.admin-table th {
+  color: #8a6b3f;
+  font-weight: 700;
+}
+
+.status {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.status.pending {
+  background: rgba(255, 138, 3, 0.12);
+  color: #ff8a03;
+}
+
+.status.paid {
+  background: rgba(45, 122, 58, 0.12);
+  color: #2d7a3a;
+}
+
+.status.processing {
+  background: rgba(255, 138, 3, 0.08);
+  color: #8a6b3f;
+}
+
+@media (max-width: 1500px) {
+  .admin-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-dash-sidebar {
+  position: sticky !important;
+  top: 0;
+  transform: none !important;
+  height: 100vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.admin-dash-user-chip {
+  margin-top: 10px;
+  padding: 8px 10px 12px;
+  color: #8a6b3f;
+  font-size: 0.78rem;
+  border-bottom: 1px solid rgba(255, 138, 3, 0.15);
+}
+
+.admin-mobile-topbar {
+  display: none;
+}
+
+.admin-mobile-user {
+  min-width: 0;
+  display: grid;
+}
+
+.admin-mobile-user strong {
+  font-size: 0.88rem;
+  color: #5a3d1a;
+  line-height: 1.1;
+}
+
+.admin-mobile-user small {
+  font-size: 0.75rem;
+  color: #8a6b3f;
+  line-height: 1.1;
+}
+
+@media (max-width: 1100px) {
+  .admin-page {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-shortcuts {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .admin-page {
+    display: block;
+  }
+
+  .admin-mobile-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 138, 3, 0.15);
+    background: rgba(255, 245, 235, 0.96);
+    backdrop-filter: blur(4px);
+  }
+
+  .admin-dash-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    transform: translateX(-100%) !important;
+    width: 272px;
+    height: 100vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .admin-dash-sidebar.open {
+    transform: translateX(0) !important;
+  }
+
+  .admin-content {
+    padding: 14px 12px 22px;
+  }
+
+  .admin-header {
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .admin-header h1 {
+    font-size: 1.35rem;
+  }
+
+  .admin-subtitle {
+    margin-top: 4px;
+    font-size: 0.84rem;
+  }
+
+  .admin-chip {
+    padding: 6px 10px;
+    font-size: 0.76rem;
+  }
+
+  .admin-kpis {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .admin-kpi-card {
+    padding: 12px;
+  }
+
+  .admin-kpi-card strong {
+    font-size: 1.18rem;
+  }
+
+  .admin-panel {
+    padding: 12px;
+  }
+
+  .admin-panel-head {
+    margin-bottom: 8px;
+  }
+
+  .admin-panel-head h2 {
+    font-size: 0.98rem;
+  }
+
+  .admin-panel-head span {
+    font-size: 0.74rem;
+  }
+
+  .admin-status-list {
+    line-height: 1.55;
+    font-size: 0.88rem;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 8px;
+    font-size: 0.83rem;
+  }
+}
+
+.admin-kpi-error {
+  margin: 0 0 12px;
+  color: #fecaca;
+  border: 1px solid rgba(248, 113, 113, 0.38);
+  background: rgba(127, 29, 29, 0.3);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 0.88rem;
+}
+
+.admin-withdraw-filters {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.3fr) repeat(3, minmax(140px, 0.9fr)) auto;
+  gap: 10px;
+  align-items: end;
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.admin-withdraw-filter-field {
+  display: grid;
+  gap: 6px;
+}
+
+.admin-withdraw-filter-field label {
+  font-size: 0.77rem;
+  color: #8a6b3f;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.admin-withdraw-filter-input {
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  background: rgba(255, 245, 235, 0.8);
+  color: #5a3d1a;
+  padding: 0 12px;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.admin-withdraw-filter-input::placeholder {
+  color: #a08050;
+}
+
+.admin-withdraw-filter-input:focus {
+  border-color: #ff8a03;
+  box-shadow: 0 0 0 2px rgba(255, 138, 3, 0.15);
+}
+
+.admin-withdraw-filter-actions {
+  display: flex;
+  align-items: stretch;
+}
+
+.admin-withdraw-filter-actions .btn {
+  width: 100%;
+  min-height: 38px;
+}
+
+.admin-withdraw-cards {
+  display: none;
+}
+
+.admin-cycle-form-panel {
+  margin-bottom: 16px;
+}
+
+.admin-cycle-form-title {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+}
+
+.admin-cycle-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.admin-cycle-field {
+  display: grid;
+  gap: 6px;
+}
+
+.admin-cycle-field.full {
+  grid-column: 1 / -1;
+}
+
+.admin-cycle-field label {
+  font-size: 0.82rem;
+  color: #8a6b3f;
+  font-weight: 700;
+}
+
+.admin-cycle-field input,
+.admin-cycle-field textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  background: rgba(255, 245, 235, 0.8);
+  color: #5a3d1a;
+  padding: 10px 12px;
+  outline: none;
+  font-size: 0.92rem;
+  box-sizing: border-box;
+}
+
+.admin-cycle-field input::placeholder,
+.admin-cycle-field textarea::placeholder {
+  color: #a08050;
+}
+
+.admin-cycle-field input:focus,
+.admin-cycle-field textarea:focus {
+  border-color: #ff8a03;
+  box-shadow: 0 0 0 2px rgba(255, 138, 3, 0.15);
+}
+
+.admin-cycle-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.admin-cycle-checkbox input {
+  width: auto;
+}
+
+.admin-cycle-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-cycle-list {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-cycle-item {
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 10px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.admin-cycle-item-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-cycle-item-title {
+  color: #5a3d1a;
+}
+
+.admin-cycle-item-description {
+  margin: 6px 0;
+  color: #8a6b3f;
+}
+
+.admin-cycle-item-meta {
+  margin: 0;
+  color: #5a3d1a;
+}
+
+.admin-cycle-item-meta.secondary {
+  margin-top: 6px;
+  color: #8a6b3f;
+}
+
+.admin-cycle-item-actions {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.admin-cycle-delete-btn {
+  background: rgba(185, 28, 28, 0.15);
+  color: #b91c1c;
+}
+
+.admin-cycle-delete-btn:hover {
+  background: rgba(185, 28, 28, 0.25);
+}
+
+/* ── Resumo de saques pendentes ── */
+.apw-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.apw-summary-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.apw-summary-card--amount {
+  border-color: rgba(255, 138, 3, 0.45);
+}
+
+.apw-summary-label {
+  font-size: 0.78rem;
+  color: #8a6b3f;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.apw-summary-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #5a3d1a;
+  line-height: 1.1;
+}
+
+.apw-summary-card--amount .apw-summary-value {
+  color: #ff8a03;
+}
+
+.apw-summary-sub {
+  font-size: 0.76rem;
+  color: #8a6b3f;
+}
+
+@media (max-width: 480px) {
+  .apw-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .apw-summary-value {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-withdraw-filters {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .admin-withdraw-filter-actions .btn {
+    width: 100%;
+  }
+
+  .admin-header-meta {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .admin-chip {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .admin-table-wrap {
+    display: none;
+  }
+
+  .admin-withdraw-cards {
+    display: grid;
+    gap: 8px;
+  }
+
+  .admin-cycle-item-actions {
+    width: 100%;
+  }
+
+  .admin-cycle-item-actions .btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  .admin-withdraw-card {
+    border: 1px solid rgba(255, 138, 3, 0.22);
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .admin-withdraw-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 6px;
+    font-size: 0.82rem;
+    color: #5a3d1a;
+  }
+
+  .admin-withdraw-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .admin-withdraw-row strong {
+    color: #8a6b3f;
+    font-size: 0.78rem;
+  }
+
+  .admin-withdraw-row .status {
+    font-size: 0.72rem;
+    padding: 4px 8px;
+  }
+}

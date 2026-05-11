@@ -1,0 +1,405 @@
+/* ─── Team Expansion Page ─────────────────────────────────────────────────── */
+.team-exp-page {
+  background:
+    radial-gradient(circle at 10% 5%, rgba(255, 211, 138, 0.55), transparent 32%),
+    radial-gradient(circle at 90% 10%, rgba(255, 138, 3, 0.28), transparent 34%),
+    linear-gradient(170deg, #fff5eb 0%, #ffe1b8 50%, #fec075 100%);
+  background-attachment: fixed;
+  color: #5a3d1a;
+  min-height: 100vh;
+  padding: 24px 16px 100px;
+}
+
+.team-exp-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.team-exp-back {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 10px;
+  padding: 8px;
+  color: #5a3d1a;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-exp-back:hover {
+  background: rgba(255, 138, 3, 0.15);
+}
+
+.team-exp-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #5a3d1a;
+  margin: 0;
+}
+
+.team-exp-loading {
+  text-align: center;
+  color: #8a6b3f;
+  padding: 48px 0;
+  font-size: 0.95rem;
+}
+
+/* Summary Cards */
+.team-exp-summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.team-exp-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.team-exp-card-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  background: rgba(255, 138, 3, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff8a03;
+}
+
+.team-exp-card-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.team-exp-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.team-exp-card-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #5a3d1a;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.team-exp-card-label {
+  font-size: 0.75rem;
+  color: #8a6b3f;
+  line-height: 1.2;
+}
+
+/* Section Title */
+.team-exp-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #5a3d1a;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Referral Section */
+.team-exp-referral {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.team-exp-referral-desc {
+  font-size: 0.85rem;
+  color: #8a6b3f;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.team-exp-referral-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.team-exp-ref-code {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.team-exp-ref-label {
+  font-size: 0.85rem;
+  color: #8a6b3f;
+}
+
+.team-exp-ref-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ff8a03;
+  letter-spacing: 1px;
+}
+
+.team-exp-ref-link {
+  display: flex;
+  gap: 8px;
+}
+
+.team-exp-ref-input {
+  flex: 1;
+  background: rgba(255, 245, 235, 0.8);
+  border: 1px solid rgba(255, 138, 3, 0.3);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #5a3d1a;
+  font-size: 0.82rem;
+  outline: none;
+  min-width: 0;
+}
+
+.team-exp-copy-btn {
+  background: linear-gradient(135deg, #ff8a03, #f7a93b);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+
+.team-exp-copy-btn:hover {
+  opacity: 0.9;
+}
+
+/* Levels Grid */
+.team-exp-levels {
+  margin-bottom: 20px;
+}
+
+.team-exp-levels-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.team-exp-level-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.team-exp-level-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.team-exp-level-badge {
+  background: linear-gradient(135deg, #ff8a03, #f7a93b);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.team-exp-level-commission {
+  font-size: 0.78rem;
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.team-exp-level-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.team-exp-level-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.team-exp-level-stat-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #5a3d1a;
+}
+
+.team-exp-level-stat-label {
+  font-size: 0.7rem;
+  color: #8a6b3f;
+}
+
+.team-exp-empty {
+  text-align: center;
+  color: #8a6b3f;
+  font-size: 0.9rem;
+  padding: 24px 0;
+}
+
+/* Commission Table */
+.team-exp-commission-info {
+  margin-bottom: 20px;
+}
+
+.team-exp-commission-table {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.team-exp-commission-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 80px;
+  padding: 12px 16px;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 138, 3, 0.12);
+}
+
+.team-exp-commission-row:last-child {
+  border-bottom: none;
+}
+
+.team-exp-commission-header {
+  background: rgba(255, 138, 3, 0.1);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #ff8a03;
+}
+
+.team-exp-commission-level {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #5a3d1a;
+}
+
+.team-exp-commission-name {
+  font-size: 0.85rem;
+  color: #8a6b3f;
+}
+
+.team-exp-commission-percent {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #16a34a;
+  text-align: right;
+}
+
+/* Action Buttons */
+.team-exp-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.team-exp-action-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #ff8a03, #f7a93b);
+  border: none;
+  border-radius: 12px;
+  padding: 14px 16px;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.team-exp-action-btn:hover {
+  opacity: 0.9;
+}
+
+.team-exp-action-secondary {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  color: #5a3d1a;
+}
+
+.team-exp-action-secondary:hover {
+  background: rgba(255, 138, 3, 0.15);
+}
+
+/* ── Tips ─────────────────────── */
+.team-exp-tips {
+  margin-bottom: 20px;
+}
+
+.team-exp-tip-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.team-exp-tip-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.team-exp-tip-item p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #5a3d1a;
+  line-height: 1.5;
+}
+
+.team-exp-tip-item strong {
+  color: #ff8a03;
+  font-weight: 700;
+}
+
+.team-exp-tip-number {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff8a03, #f7a93b);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+/* Responsive */
+@media (max-width: 520px) {
+  .team-exp-summary {
+    grid-template-columns: 1fr;
+  }
+}

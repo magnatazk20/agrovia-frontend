@@ -1,0 +1,543 @@
+/* ═══════════════════════════════════════════════════════
+   Introduction Page — same layout as Dashboard/About
+═══════════════════════════════════════════════════════ */
+
+.intro-page,
+.dash-app.intro-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 10% 5%, rgba(255, 211, 138, 0.55), transparent 32%),
+    radial-gradient(circle at 90% 10%, rgba(255, 138, 3, 0.28), transparent 34%),
+    linear-gradient(170deg, #fff5eb 0%, #ffe1b8 50%, #fec075 100%);
+  background-attachment: fixed;
+  color: #5a3d1a;
+  position: relative;
+  z-index: 2;
+}
+
+.intro-page .dash-main {
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: inherit;
+}
+
+.intro-page .dash-sidebar {
+  position: fixed;
+  z-index: 30;
+  inset: 0 auto 0 0;
+  width: 272px;
+  background: rgba(255, 245, 235, 0.98);
+  border-right: 1px solid rgba(255, 138, 3, 0.22);
+  transform: translateX(-100%);
+  transition: transform 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 14px;
+}
+
+.intro-page .dash-sidebar.open {
+  transform: translateX(0);
+}
+
+.intro-page .dash-bottom-nav {
+  position: fixed;
+  z-index: 40;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(70px + env(safe-area-inset-bottom));
+  padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  background: rgba(255, 245, 235, 0.97);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255, 138, 3, 0.22);
+  box-shadow: 0 -4px 20px rgba(255, 138, 3, 0.12);
+}
+
+.intro-page .dash-bottom-nav button {
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: #6b5a3f;
+  display: grid;
+  place-items: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.intro-page .dash-bottom-nav button.active {
+  background: rgba(255, 138, 3, 0.15);
+  color: #ff8a03;
+}
+
+.intro-page .dash-bottom-nav small {
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.intro-page .dash-bottom-nav span {
+  font-size: 1.1rem;
+}
+
+.intro-page .icon-sm {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.intro-page .dash-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(95, 61, 26, 0.4);
+  z-index: 20;
+  cursor: pointer;
+}
+
+.intro-page .dash-content {
+  display: grid;
+  gap: 12px;
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: 90px;
+}
+
+/* ── Sidebar nav ─────────────────────────────── */
+.intro-page .dash-nav {
+  margin-top: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.intro-page .dash-nav-group-title {
+  padding: 0 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a6b3f;
+  margin-bottom: 2px;
+}
+
+.intro-page .dash-nav-item {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: #5a3d1a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.intro-page .dash-nav-item.active,
+.intro-page .dash-nav-item:hover {
+  background: rgba(255, 138, 3, 0.12);
+  border-color: rgba(255, 138, 3, 0.35);
+  color: #ff8a03;
+}
+
+.intro-page .dash-logout.side {
+  margin-top: auto;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  background: rgba(248, 113, 113, 0.1);
+  color: #b91c1c;
+  border-radius: 12px;
+  padding: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.intro-page .dash-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px 16px;
+  border-bottom: 1px solid rgba(255, 138, 3, 0.22);
+}
+
+.intro-page .dash-brand strong {
+  display: block;
+  font-size: 0.98rem;
+  color: #5a3d1a;
+}
+
+.intro-page .dash-brand small {
+  color: #8a6b3f;
+  font-size: 0.78rem;
+}
+
+/* ── Back button ─────────────────────────────── */
+.intro-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #ff8a03, #f7a93b);
+  border: none;
+  color: #fff;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 138, 3, 0.3);
+  transition: opacity 0.18s, transform 0.15s;
+  align-self: flex-start;
+}
+
+.intro-back:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.intro-back:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+/* ── Hero Banner ─────────────────────────────── */
+.intro-hero {
+  background: transparent;
+  color: #5a3d1a;
+  border-radius: 18px;
+  padding: 28px 22px;
+  box-shadow: none;
+  margin-top: 16px;
+  border: 1px solid rgba(255, 138, 3, 0.22);
+}
+
+.intro-hero__kicker {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  opacity: 0.9;
+  color: #ff8a03;
+}
+
+.intro-hero__title {
+  margin: 0 0 6px;
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: #5a3d1a;
+}
+
+.intro-hero__subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.95;
+  line-height: 1.5;
+  color: #5a3d1a;
+}
+
+/* ── Section ──────────────────────────────────── */
+.intro-section {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 16px;
+  padding: 18px 16px 6px;
+  box-shadow: 0 6px 22px -16px rgba(0, 0, 0, 0.22);
+}
+
+.intro-section h2 {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  color: #b35c00;
+  font-weight: 800;
+}
+
+.intro-section p {
+  margin: 0 0 14px;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #2e333d;
+}
+
+.intro-section strong {
+  color: #b35c00;
+}
+
+/* ── Brands ────────────────────────────────────── */
+.intro-brands {
+  display: inline;
+  margin: 0 0 14px;
+}
+
+.intro-brands span {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #b35c00;
+}
+
+.intro-brands span:not(:last-child)::after {
+  content: ', ';
+  color: #2e333d;
+  font-weight: 400;
+}
+
+/* ── List ─────────────────────────────────────── */
+.intro-list {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.intro-list__item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: #fff7ec;
+  border: 1px solid #ffe1b8;
+  padding: 12px 14px;
+  border-radius: 12px;
+}
+
+.intro-list__item h3 {
+  margin: 0 0 4px;
+  font-size: 0.98rem;
+  color: #b35c00;
+  font-weight: 800;
+}
+
+.intro-list__item p {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: #3b424d;
+  text-align: left;
+}
+
+.intro-list__number {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #ff8a03, #ff5f03);
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 0.88rem;
+  box-shadow: 0 4px 10px -4px rgba(255, 95, 3, 0.6);
+}
+
+/* ── Certificado de incorporação ──────────────── */
+.intro-certificate {
+  margin: 16px 0 10px;
+  background: #fdfaf2;
+  border: 1px solid #c9b984;
+  border-radius: 10px;
+  padding: 34px 32px 30px;
+  position: relative;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: #2a2a2a;
+  box-shadow:
+    0 2px 0 #c9b984 inset,
+    0 -2px 0 #c9b984 inset,
+    0 12px 30px -18px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.intro-certificate::before,
+.intro-certificate::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    #8a6f22 0 6px,
+    transparent 6px 12px
+  );
+  opacity: 0.6;
+}
+
+.intro-certificate::before { top: 10px; }
+.intro-certificate::after  { bottom: 10px; }
+
+.intro-certificate__stamp {
+  position: absolute;
+  top: 20px;
+  right: 22px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #a02c2c;
+  border: 2px solid #a02c2c;
+  padding: 3px 8px;
+  border-radius: 3px;
+  letter-spacing: 2px;
+  transform: rotate(-6deg);
+  opacity: 0.85;
+}
+
+.intro-certificate__header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.intro-certificate__crown {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 8px;
+  display: block;
+  color: #6d4c0f;
+}
+
+.intro-certificate__office {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #6d4c0f;
+  text-transform: uppercase;
+  margin: 2px 0 0;
+}
+
+.intro-certificate__main-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: 1px;
+  margin: 18px 0 6px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.intro-certificate__subtitle {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #3a3a3a;
+  letter-spacing: 2px;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 0 22px;
+}
+
+.intro-certificate__number {
+  font-size: 0.85rem;
+  text-align: center;
+  color: #2a2a2a;
+  margin: 0 0 18px;
+}
+
+.intro-certificate__number strong {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.intro-certificate__body {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  text-align: center;
+  margin: 0 0 6px;
+  color: #2a2a2a;
+}
+
+.intro-certificate__company-name {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 14px 0;
+  color: #1a1a1a;
+  text-transform: uppercase;
+}
+
+.intro-certificate__issued {
+  text-align: center;
+  margin: 22px 0 20px;
+  font-size: 0.88rem;
+  color: #2a2a2a;
+  font-style: italic;
+}
+
+.intro-certificate__footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  padding-top: 18px;
+  margin-top: 12px;
+  border-top: 1px solid #c9b984;
+}
+
+.intro-certificate__seal {
+  width: 56px;
+  height: 56px;
+  border: 2px solid #6d4c0f;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #6d4c0f;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 1.1;
+  transform: rotate(-8deg);
+}
+
+.intro-certificate__signature {
+  font-family: 'Brush Script MT', 'Segoe Script', cursive;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+}
+
+.intro-certificate__entity {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  color: #6d4c0f;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* ── Desktop layout ── */
+@media (min-width: 860px) {
+  .intro-page,
+  .dash-app.intro-page {
+    display: grid;
+    grid-template-columns: 272px 1fr;
+    padding: 0;
+  }
+
+  .intro-page .dash-sidebar,
+  .dash-app.intro-page .dash-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    transform: none;
+  }
+
+  .intro-page .dash-overlay,
+  .intro-page .dash-bottom-nav {
+    display: none;
+  }
+
+  .intro-page .dash-main,
+  .dash-app.intro-page .dash-main {
+    padding: 0 0 0 286px;
+  }
+
+  .intro-page .dash-content,
+  .dash-app.intro-page .dash-content {
+    padding: 14px;
+  }
+}

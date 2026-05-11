@@ -1,0 +1,605 @@
+/* ═══════════════════════════════════════════════════════════════
+   VIP — tema laranja TRK
+═══════════════════════════════════════════════════════════════ */
+
+.vip-page {
+  min-height: 100vh;
+  padding: 24px 16px 100px;
+  color: #5a3d1a;
+  background:
+    radial-gradient(circle at 10% 5%, rgba(255, 211, 138, 0.55), transparent 32%),
+    radial-gradient(circle at 90% 10%, rgba(255, 138, 3, 0.28), transparent 34%),
+    linear-gradient(170deg, #fff5eb 0%, #ffe1b8 50%, #fec075 100%);
+  position: relative;
+  z-index: 2;
+}
+
+.vip-page::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(#fff5eb, #fec075);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.vip-shell {
+  max-width: 1040px;
+  margin: 0 auto;
+  display: grid;
+  gap: 18px;
+}
+
+/* ── Hero banner VIP ─────────────────────────────────── */
+.vip-hero {
+  position: relative;
+  border-radius: 22px;
+  padding: 28px 24px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 255, 255, 0.25), transparent 45%),
+    linear-gradient(135deg, #ff8a03 0%, #f7a93b 55%, #f7d981 100%);
+  box-shadow: 0 20px 44px rgba(255, 138, 3, 0.3);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.vip-hero::before,
+.vip-hero::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.vip-hero::before {
+  width: 180px;
+  height: 180px;
+  right: -50px;
+  top: -60px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.35), transparent 70%);
+}
+
+.vip-hero::after {
+  width: 140px;
+  height: 140px;
+  left: -40px;
+  bottom: -50px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.22), transparent 70%);
+}
+
+.vip-hero__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.vip-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  margin: 10px auto 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.vip-hero__badge svg {
+  flex-shrink: 0;
+}
+
+.vip-hero__content > div {
+  text-align: center;
+}
+
+.vip-kicker {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 700;
+}
+
+.vip-hero h1 {
+  margin: 6px 0 8px;
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  text-shadow: 0 2px 8px rgba(180, 83, 9, 0.4);
+}
+
+.vip-subtitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 0.95rem;
+  max-width: 540px;
+  line-height: 1.45;
+  text-shadow: 0 1px 2px rgba(120, 53, 15, 0.25);
+}
+
+.vip-back {
+  align-self: flex-start;
+  text-decoration: none;
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: #ff8a03;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(255, 138, 3, 0.3);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.vip-back:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+/* ── Mensagens e estados ─────────────────────────────── */
+.vip-message {
+  margin: 0;
+  border: 1px solid rgba(255, 138, 3, 0.45);
+  background: rgba(255, 138, 3, 0.12);
+  color: #8a5300;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.vip-loading {
+  border: 1px solid rgba(255, 138, 3, 0.25);
+  border-radius: 14px;
+  padding: 18px;
+  background: #ffffff;
+  color: #8a5300;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ── Seções VIP ─────────────────────────────────────── */
+.vip-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 4px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #5a3d1a;
+  letter-spacing: 0.2px;
+}
+
+.vip-section-title svg {
+  color: #ff8a03;
+  flex-shrink: 0;
+}
+
+.vip-active-section {
+  display: grid;
+  gap: 12px;
+}
+
+.vip-active-section .vip-card {
+  max-width: 480px;
+}
+
+.vip-available-section {
+  display: grid;
+  gap: 12px;
+}
+
+/* ── Grid de planos VIP ──────────────────────────────── */
+.vip-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+
+.vip-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(255, 138, 3, 0.10);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  overflow: hidden;
+}
+
+.vip-card:hover {
+  transform: translateY(-3px);
+  border-color: #ff8a03;
+  box-shadow: 0 16px 36px rgba(255, 138, 3, 0.22);
+}
+
+.vip-card.active {
+  border-color: #ff8a03;
+  box-shadow: 0 16px 36px rgba(255, 138, 3, 0.28);
+}
+
+/* ── Imagem do VIP ── */
+.vip-card__img-wrap {
+  position: relative;
+  width: 100%;
+  height: 170px;
+  overflow: hidden;
+}
+
+.vip-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.vip-card__img-tag {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background: linear-gradient(135deg, rgba(255, 138, 3, 0.92), rgba(255, 179, 71, 0.92));
+  color: #ffffff;
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 12px rgba(255, 138, 3, 0.35);
+}
+
+.vip-card__img-active {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(45, 122, 58, 0.90);
+  color: #ffffff;
+  font-size: 0.70rem;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 10px rgba(45, 122, 58, 0.30);
+}
+
+/* ── Corpo do card ── */
+.vip-card__body {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+}
+
+.vip-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.vip-price {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.vip-price small {
+  color: #8a6b3f;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.vip-card-top strong {
+  color: #ff8a03;
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+}
+
+/* ── Info rows (texto com ícones) ── */
+.vip-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vip-card__info-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  background: #fff8ef;
+  border: 1px solid rgba(255, 138, 3, 0.12);
+  font-size: 0.88rem;
+  color: #5a3d1a;
+  font-weight: 500;
+}
+
+.vip-card__info-row svg {
+  color: #ff8a03;
+  flex-shrink: 0;
+}
+
+.vip-card__info-row strong {
+  font-weight: 800;
+  color: #5a3d1a;
+}
+
+.vip-card__info-row--highlight {
+  background: linear-gradient(135deg, #fff5eb, #ffecd0);
+  border-color: rgba(255, 138, 3, 0.22);
+}
+
+.vip-card__info-row--highlight strong {
+  color: #ff8a03;
+}
+
+/* ── Benefícios (texto livre) ── */
+.vip-card__benefits {
+  margin: 0;
+  font-size: 0.84rem;
+  color: #8a6b3f;
+  line-height: 1.5;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255, 138, 3, 0.05);
+  border-left: 3px solid rgba(255, 138, 3, 0.35);
+}
+
+/* ── Botão de ativar ── */
+.vip-btn {
+  margin-top: auto;
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  padding: 13px 12px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: linear-gradient(90deg, #f7d981, #ff8a03);
+  color: #ffffff;
+  letter-spacing: 0.3px;
+  box-shadow: 0 10px 22px rgba(255, 138, 3, 0.35);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.vip-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.vip-btn:disabled {
+  background: #ffe1b8;
+  color: #8a6b3f;
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.9;
+}
+
+.vip-card.active .vip-btn:disabled {
+  background: linear-gradient(90deg, #8a5300, #ff8a03);
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* ── VIPs desativados ────────────────────────────────── */
+.vip-disabled-section {
+  display: grid;
+  gap: 12px;
+}
+
+.vip-section-title--disabled {
+  color: #8a6b3f;
+}
+
+.vip-section-title--disabled svg {
+  color: #b09070;
+}
+
+.vip-card--disabled {
+  opacity: 0.55;
+  filter: grayscale(0.4);
+  border-color: rgba(150, 130, 100, 0.25);
+  box-shadow: 0 4px 12px rgba(150, 130, 100, 0.08);
+}
+
+.vip-card--disabled:hover {
+  transform: none;
+  border-color: rgba(150, 130, 100, 0.35);
+  box-shadow: 0 4px 12px rgba(150, 130, 100, 0.12);
+}
+
+.vip-card__img-disabled {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(140, 100, 60, 0.85);
+  color: #ffffff;
+  font-size: 0.70rem;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 10px rgba(140, 100, 60, 0.25);
+}
+
+.vip-btn--disabled {
+  background: #d4c4a8 !important;
+  color: #7a6a50 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+}
+
+/* ── Requisitos de convite ─────────────────────────────── */
+.vip-requirements {
+  background: linear-gradient(135deg, #fff8ef, #fff1de);
+  border: 1px solid rgba(255, 138, 3, 0.25);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+
+.vip-requirements__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #8a5300;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.vip-requirements__title svg {
+  color: #ff8a03;
+  flex-shrink: 0;
+}
+
+.vip-requirements__list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.vip-requirements__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 70px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 138, 3, 0.18);
+  border-radius: 10px;
+  padding: 8px 6px;
+}
+
+.vip-requirements__label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #8a6b3f;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.vip-requirements__item strong {
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #ff8a03;
+}
+
+.vip-requirements__sub {
+  font-size: 0.68rem;
+  color: #8a6b3f;
+  font-weight: 500;
+}
+
+/* ── Responsividade ──────────────────────────────────── */
+@media (min-width: 720px) {
+  .vip-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vip-card__img-wrap {
+    height: 180px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .vip-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .vip-card__img-wrap {
+    height: 190px;
+  }
+}
+
+/* ── Bottom nav page-level color overrides ─────────── */
+.vip-page .dash-bottom-nav button {
+  color: #6b5a3f;
+}
+
+.vip-page .dash-bottom-nav button.active {
+  background: rgba(255, 138, 3, 0.15);
+  color: #ff8a03;
+}
+
+/* ── Sidebar (mesma aparência do Dashboard) ─────────── */
+.vip-page .dash-sidebar {
+  background: #ffffff;
+  border-right: 1px solid rgba(122, 93, 58, 0.15);
+  color: #5a3d1a;
+}
+
+.vip-page .dash-brand strong {
+  color: #5a3d1a;
+}
+
+.vip-page .dash-brand small {
+  color: #8a6b3f;
+}
+
+.vip-page .dash-nav-item {
+  color: #6b5a3f;
+}
+
+.vip-page .dash-nav-item.active {
+  background: rgba(255, 138, 3, 0.12);
+  color: #ff8a03;
+}
+
+.vip-page .dash-nav-item:hover {
+  background: rgba(255, 138, 3, 0.08);
+}
+
+.vip-page .dash-overlay {
+  background: rgba(95, 61, 26, 0.4);
+}
+
+@media (max-width: 560px) {
+  .vip-hero {
+    padding: 22px 18px;
+  }
+
+  .vip-hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .vip-card__img-wrap {
+    height: 160px;
+  }
+
+  .vip-card-top strong {
+    font-size: 1.4rem;
+  }
+}

@@ -1,0 +1,249 @@
+:root {
+  --dash-bg: #ffffff;
+  --dash-card: #ffffff;
+  --dash-card-2: #f0fdf4;
+  --dash-border: rgba(46, 125, 50, 0.22);
+  --dash-text: #1a1a1a;
+  --dash-muted: #4caf50;
+  --dash-green: #4caf50;
+  --dash-green-dim: rgba(46, 125, 50, 0.12);
+  --dash-red: #f87171;
+}
+
+.about-page,
+.dash-app.about-page {
+  min-height: 100vh;
+  background: var(--dash-bg);
+  background-attachment: fixed;
+  color: var(--dash-text);
+  position: relative;
+  z-index: 2;
+}
+
+.about-page .dash-main {
+  position: relative;
+  z-index: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: inherit;
+}
+
+.about-page .dash-sidebar {
+  position: fixed;
+  z-index: 30;
+  inset: 0 auto 0 0;
+  width: 272px;
+  background: rgba(255, 255, 255, 0.98);
+  border-right: 1px solid var(--dash-border);
+  transform: translateX(-100%);
+  transition: transform 0.28s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 14px;
+}
+
+.about-page .dash-sidebar.open {
+  transform: translateX(0);
+}
+
+.about-page .dash-bottom-nav {
+  position: fixed;
+  z-index: 40;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(70px + env(safe-area-inset-bottom));
+  padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--dash-border);
+  box-shadow: 0 -4px 20px var(--dash-green-dim);
+}
+
+.about-page .dash-bottom-nav button {
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--dash-text);
+  display: grid;
+  place-items: center;
+  gap: 2px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.about-page .dash-bottom-nav button.active {
+  background: var(--dash-green-dim);
+  color: var(--dash-green);
+}
+
+.about-page .dash-bottom-nav small {
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.about-page .dash-bottom-nav span {
+  font-size: 1.1rem;
+}
+
+.about-page .icon-sm {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.about-page .dash-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 20;
+  cursor: pointer;
+}
+
+.about-page .dash-content {
+  display: grid;
+  gap: 12px;
+  padding-top: env(safe-area-inset-top, 0);
+  padding-bottom: 90px;
+}
+
+/* ── Sidebar nav ─────────────────────────────── */
+.about-page .dash-nav {
+  margin-top: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.about-page .dash-nav-group-title {
+  padding: 0 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dash-muted);
+  margin-bottom: 2px;
+}
+
+.about-page .dash-nav-item {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--dash-text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.about-page .dash-nav-item.active,
+.about-page .dash-nav-item:hover {
+  background: var(--dash-green-dim);
+  border-color: var(--dash-border);
+  color: var(--dash-green);
+}
+
+.about-page .dash-logout.side {
+  margin-top: auto;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  background: rgba(248, 113, 113, 0.1);
+  color: #b91c1c;
+  border-radius: 12px;
+  padding: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.about-page .dash-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px 16px;
+  border-bottom: 1px solid var(--dash-border);
+}
+
+.about-page .dash-brand strong {
+  display: block;
+  font-size: 0.98rem;
+  color: var(--dash-text);
+}
+
+.about-page .dash-brand small {
+  color: var(--dash-muted);
+  font-size: 0.78rem;
+}
+
+/* ── Banner Agrovia ── */
+.about-agrovia-banner {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px var(--dash-green-dim);
+  margin-top: 16px;
+}
+
+.about-agrovia-banner-img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* ── Texto sobre nós ── */
+.about-text-section {
+  background: var(--dash-card);
+  border: 1px solid var(--dash-border);
+  border-radius: 16px;
+  padding: 18px 16px;
+}
+
+.about-text-paragraph {
+  margin: 0 0 12px;
+  font-size: 0.9rem;
+  color: var(--dash-text);
+  line-height: 1.6;
+}
+
+.about-text-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Desktop layout ── */
+@media (min-width: 860px) {
+  .about-page,
+  .dash-app.about-page {
+    display: grid;
+    grid-template-columns: 272px 1fr;
+    padding: 0;
+  }
+
+  .about-page .dash-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    transform: none;
+  }
+
+  .about-page .dash-overlay,
+  .about-page .dash-bottom-nav {
+    display: none;
+  }
+
+  .about-page .dash-main {
+    padding: 0 0 0 286px;
+  }
+
+  .about-page .dash-content {
+    padding: 14px;
+    padding-bottom: 14px;
+  }
+}

@@ -1,0 +1,622 @@
+/* ═══════════════════════════════════════════════════════════════
+   AUTH PAGES — dois temas nesta mesma folha
+
+   1) TEMA LARANJA/CREME (.login-orange)  → usado em /login
+      Estilo inspirado em apps mobile tipo Vant/Van UI.
+
+   2) TEMA AZUL + BRANCO (.login-page--blue)  → usado em /cadastro
+      Sobrescreve os estilos compartilhados de auth (.auth-page,
+      .auth-shell, .form-panel, .auth-form, etc.).
+═══════════════════════════════════════════════════════════════ */
+
+
+/* ═══════════════════════════════════════════════════════════════
+   TEMA LARANJA (/login)
+═══════════════════════════════════════════════════════════════ */
+
+.login-orange {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 32px;
+  background: #ffffff;
+  color: #1a1a1a;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  position: relative;
+  z-index: 2;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Cobre o fundo global escuro/bg-animation em toda a viewport */
+.login-orange::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Hero no topo */
+.login-orange__hero {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  justify-content: center;
+  padding: 28px 16px 8px;
+}
+
+.login-orange__hero-logo {
+  width: 300px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Título */
+.login-orange__title {
+  width: 100%;
+  max-width: 520px;
+  margin: 18px 0 6px;
+  padding: 0 24px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  text-align: left;
+}
+
+/* Formulário */
+.login-orange__form {
+  width: 100%;
+  max-width: 520px;
+  padding: 6px 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Campo (van-field-like) */
+.lo-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 12px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  border: 1.5px solid #e0e0e0;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+
+.lo-field:focus-within {
+  border-color: #4caf50;
+}
+
+.lo-field__icon {
+  width: 20px;
+  height: 20px;
+  color: #4caf50;
+  flex: 0 0 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lo-field__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.lo-field input {
+  flex: 1 1 0%;
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #1a1a1a;
+  font-size: 14px;
+  padding: 2px 0;
+}
+
+.lo-field input::placeholder {
+  color: #999;
+  font-size: 12px;
+}
+
+/* Prefixo do DDI (dropdown 55) */
+.lo-field__prefix {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px 2px 0;
+  margin-right: 4px;
+  border-right: 1px solid #e0e0e0;
+  color: #1a1a1a;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: default;
+  user-select: none;
+}
+
+.lo-field__ddi {
+  min-width: 20px;
+  text-align: center;
+}
+
+.lo-field__ddi-arrow {
+  font-size: 10px;
+  color: #9e9e9e;
+}
+
+/* Ícone direito (olho para mostrar/ocultar senha) */
+.lo-field__right-icon {
+  border: 0;
+  background: transparent;
+  padding: 4px;
+  margin-left: 4px;
+  color: #9e9e9e;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.lo-field__right-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.lo-field__right-icon:hover {
+  background: #eeeeee;
+  color: #4caf50;
+}
+
+/* Checkbox "Lembrar nome de usuário/senha" */
+.lo-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 12px 4px;
+  cursor: pointer;
+  user-select: none;
+  color: #1a1a1a;
+  font-size: 14px;
+}
+
+.lo-check input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+.lo-check__box {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1.5px solid #bdbdbd;
+  background: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.lo-check__box svg {
+  width: 12px;
+  height: 12px;
+}
+
+.lo-check input:checked + .lo-check__box {
+  background: #4caf50;
+  border-color: #4caf50;
+  color: #ffffff;
+}
+
+.lo-check__label {
+  font-size: 14px;
+}
+
+/* Ações (botão + link) */
+.login-orange__actions {
+  padding: 20px 16px;
+}
+
+.lo-submit {
+  width: 100%;
+  padding: 0;
+  height: 44px;
+  border: 0;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+  box-shadow: 0 4px 14px rgba(46, 125, 50, 0.35);
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  letter-spacing: 0.5px;
+}
+
+.lo-submit:hover {
+  filter: brightness(1.04);
+  transform: translateY(-1px);
+}
+
+.lo-submit:active {
+  transform: translateY(0);
+}
+
+.lo-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.lo-register {
+  margin: 30px 0 0;
+  color: #757575;
+  font-size: 16px;
+  text-align: left;
+}
+
+.lo-register__link {
+  color: #4caf50;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.lo-register__link:hover {
+  color: #2e7d32;
+  text-decoration: underline;
+}
+
+/* Feedback (success / error) */
+.lo-feedback {
+  width: 100%;
+  max-width: 520px;
+  margin: 12px auto 0;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  text-align: center;
+}
+
+.lo-feedback--ok {
+  background: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.lo-feedback--err {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+/* Responsivo */
+@media (min-width: 768px) {
+  .login-orange {
+    justify-content: flex-start;
+  }
+
+  .login-orange__form {
+    padding: 6px 24px 0;
+  }
+
+  .login-orange__title {
+    padding: 0 36px;
+    font-size: 1.7rem;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   TEMA AZUL + BRANCO (.login-page--blue) — usado em /cadastro
+═══════════════════════════════════════════════════════════════ */
+
+.login-page--blue {
+  background: #ffffff;
+  position: relative;
+  z-index: 2;
+}
+
+.login-page--blue::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.login-page--blue .auth-shell {
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 20px;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow:
+    0 20px 60px rgba(30, 64, 175, 0.30),
+    0 0 0 1px rgba(37, 99, 235, 0.05) inset;
+}
+
+.login-page--blue .form-panel {
+  background: #ffffff;
+  padding: 36px 32px;
+}
+
+.login-page--blue .login-invite-notice {
+  background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+  color: #1e3a8a;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  line-height: 1.9;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+}
+
+.login-page--blue .login-invite-highlight {
+  color: #1d4ed8;
+  font-weight: 800;
+}
+
+.login-page--blue .form-panel h1 {
+  color: #1e3a8a;
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  text-align: center;
+}
+
+.login-page--blue .subtitle {
+  margin: 6px 0 22px;
+  color: #475569;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.login-page--blue .auth-form label {
+  color: #1e3a8a;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.login-page--blue .auth-form input[type='text'],
+.login-page--blue .auth-form input[type='email'],
+.login-page--blue .auth-form input[type='tel'],
+.login-page--blue .auth-form input[type='password'] {
+  background: #f8faff;
+  border: 1.5px solid #bfdbfe;
+  border-radius: 12px;
+  color: #0f172a;
+  padding: 12px 14px;
+  font-size: 0.98rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.login-page--blue .auth-form input::placeholder {
+  color: #94a3b8;
+}
+
+.login-page--blue .auth-form input[type='text']:focus,
+.login-page--blue .auth-form input[type='email']:focus,
+.login-page--blue .auth-form input[type='tel']:focus,
+.login-page--blue .auth-form input[type='password']:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.login-page--blue .input-icon {
+  color: #2563eb;
+  opacity: 1;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+.login-page--blue .input-icon-svg {
+  width: 20px;
+  height: 20px;
+}
+
+.login-page--blue .input-with-icon input[type='text'],
+.login-page--blue .input-with-icon input[type='email'],
+.login-page--blue .input-with-icon input[type='tel'],
+.login-page--blue .input-with-icon input[type='password'] {
+  padding-left: 44px;
+}
+
+.login-page--blue .remember-me {
+  color: #1e3a8a;
+  font-weight: 500;
+}
+
+.login-page--blue .remember-me input {
+  accent-color: #2563eb;
+}
+
+.login-page--blue .text-link {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.login-page--blue .text-link:hover {
+  color: #1d4ed8;
+}
+
+.login-page--blue .auth-form button {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 13px 16px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.login-page--blue .auth-form button:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.45);
+}
+
+.login-page--blue .auth-form button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.45);
+  outline-offset: 2px;
+}
+
+.login-page--blue .feedback.success {
+  background: #eff6ff;
+  color: #1e40af;
+  border: 1px solid #bfdbfe;
+}
+
+.login-page--blue .feedback.error {
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+}
+
+.login-page--blue .social-links-section {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.login-page--blue .social-links-title {
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+.login-page--blue .switch-page {
+  color: #475569;
+}
+
+.login-page--blue .switch-page .text-link.bold {
+  color: #1d4ed8;
+}
+
+@media (min-width: 860px) {
+  .login-page--blue .form-panel {
+    padding: 44px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-page--blue .form-panel {
+    padding: 26px 22px;
+  }
+
+  .login-page--blue .form-panel h1 {
+    font-size: 1.65rem;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   MODAL DE SUCESSO — Register
+═══════════════════════════════════════════════════════════════ */
+
+.agrovia-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.agrovia-modal {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 36px 28px;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.agrovia-modal__icon {
+  width: 64px;
+  height: 64px;
+  background: #e8f5e9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+
+.agrovia-modal__icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.agrovia-modal__title {
+  margin: 0 0 10px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.agrovia-modal__text {
+  margin: 0 0 24px;
+  font-size: 0.95rem;
+  color: #616161;
+  line-height: 1.6;
+}
+
+.agrovia-modal__btn {
+  width: 100%;
+  height: 44px;
+  border: 0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+  box-shadow: 0 4px 14px rgba(46, 125, 50, 0.35);
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.agrovia-modal__btn:hover {
+  filter: brightness(1.04);
+  transform: translateY(-1px);
+}
+
+.agrovia-modal__btn:active {
+  transform: translateY(0);
+}

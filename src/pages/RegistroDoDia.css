@@ -1,0 +1,838 @@
+/* ─── RegistroDoDia — layout Agrovia verde animado ─── */
+
+.rdd-page {
+  min-height: 100vh;
+  background: #f0fdf4;
+  color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  animation: rddPageIn 0.5s ease-out both;
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes rddPageIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Header ── */
+.rdd-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 16px 14px;
+  background: #fff;
+  border-bottom: 1.5px solid rgba(76, 175, 80, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.rdd-back-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(76, 175, 80, 0.25);
+  background: #f0fdf4;
+  color: #4caf50;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.rdd-back-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.rdd-back-btn:hover {
+  background: #4caf50;
+  color: #fff;
+  transform: translateX(-3px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.35);
+}
+
+.rdd-back-btn:active {
+  transform: translateX(-3px) scale(0.95);
+}
+
+.rdd-header-text {
+  flex: 1;
+}
+
+.rdd-header-text h1 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: #1a1a1a;
+  animation: rddSlideDown 0.4s ease-out both;
+}
+
+.rdd-header-text p {
+  margin: 2px 0 0;
+  font-size: 0.72rem;
+  color: #4caf50;
+  font-weight: 600;
+  animation: rddSlideDown 0.5s ease-out 0.05s both;
+}
+
+@keyframes rddSlideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.rdd-header-spacer {
+  width: 40px;
+}
+
+/* ── Content ── */
+.rdd-content {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+  padding-bottom: 40px;
+  position: relative;
+}
+
+/* ── Hero card ── */
+.rdd-hero-card {
+  background: linear-gradient(135deg, #1565c0, #1976d2, #42a5f5, #1565c0);
+  background-size: 300% 300%;
+  border-radius: 24px;
+  padding: 28px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(21, 101, 192, 0.3);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.rdd-hero-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: rddHeroGradient 4s ease infinite;
+}
+
+@keyframes rddHeroGradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.rdd-hero-glow {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  filter: blur(20px);
+  animation: rddGlowPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes rddGlowPulse {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+}
+
+.rdd-hero-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rdd-hero-icon {
+  width: 52px;
+  height: 52px;
+  color: #fff;
+  animation: rddIconBounce 0.6s ease-out 0.3s both, rddIconFloat 3s ease-in-out 0.9s infinite;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+}
+
+.rdd-hero-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes rddIconBounce {
+  0% { transform: scale(0) rotate(-20deg); }
+  60% { transform: scale(1.3) rotate(10deg); }
+  80% { transform: scale(0.9) rotate(-5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes rddIconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.rdd-hero-icon-ring {
+  position: absolute;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: rddRingExpand 1s ease-out 0.5s both, rddRingPulse 2s ease-in-out 1.5s infinite;
+  pointer-events: none;
+}
+
+@keyframes rddRingExpand {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+@keyframes rddRingPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.25; }
+}
+
+.rdd-hero-title {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  animation: rddTitleIn 0.5s ease-out 0.4s both;
+}
+
+@keyframes rddTitleIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.rdd-hero-text {
+  margin: 0;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+  font-weight: 600;
+  animation: rddTitleIn 0.5s ease-out 0.5s both;
+}
+
+.rdd-hero-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    120deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.07) 50%,
+    transparent 60%
+  );
+  animation: rddShineMove 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes rddShineMove {
+  0% { transform: translateX(-100%) rotate(30deg); }
+  100% { transform: translateX(100%) rotate(30deg); }
+}
+
+/* ── Stats grid ── */
+.rdd-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.rdd-stats-grid--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rdd-stat-card {
+  background: #fff;
+  border: 1.5px solid rgba(76, 175, 80, 0.18);
+  border-radius: 16px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.rdd-stat-card:hover {
+  border-color: #4caf50;
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.15);
+  transform: translateY(-2px);
+}
+
+.rdd-stat-card--deposit {
+  background: linear-gradient(135deg, #e8f7ee, #f0fdf4);
+  border-color: rgba(76, 175, 80, 0.3);
+}
+
+.rdd-stat-card--withdraw {
+  background: linear-gradient(135deg, #fff8e1, #fffde7);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.rdd-stat-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  background: rgba(76, 175, 80, 0.1);
+  color: #4caf50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rdd-stat-card--deposit .rdd-stat-icon {
+  background: rgba(76, 175, 80, 0.15);
+  color: #2e7d32;
+}
+
+.rdd-stat-card--withdraw .rdd-stat-icon {
+  background: rgba(245, 158, 11, 0.15);
+  color: #d97706;
+}
+
+.rdd-stat-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.rdd-stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rdd-stat-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.rdd-stat-value {
+  font-size: 0.92rem;
+  font-weight: 900;
+  color: #1a1a1a;
+}
+
+.rdd-stat-card--deposit .rdd-stat-value {
+  color: #2e7d32;
+}
+
+.rdd-stat-card--withdraw .rdd-stat-value {
+  color: #d97706;
+}
+
+/* ── Filter card ── */
+.rdd-filter-card {
+  background: #fff;
+  border: 1.5px solid rgba(76, 175, 80, 0.22);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.1);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.rdd-filter-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rdd-filter-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(76, 175, 80, 0.12);
+}
+
+.rdd-filter-icon {
+  width: 18px;
+  height: 18px;
+  color: #4caf50;
+}
+
+.rdd-filter-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.rdd-filter-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.rdd-date-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.rdd-date-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rdd-date-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.rdd-date-input {
+  height: 42px;
+  border: 1.5px solid rgba(76, 175, 80, 0.2);
+  border-radius: 10px;
+  padding: 0 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+  background: #f5f9f5;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.rdd-date-input:focus {
+  border-color: #4caf50;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
+}
+
+.rdd-date-sep {
+  color: #aaa;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-top: 18px;
+  flex-shrink: 0;
+}
+
+.rdd-quick-range {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.rdd-quick-btn {
+  flex: 1;
+  height: 34px;
+  border: 1.5px solid rgba(76, 175, 80, 0.2);
+  border-radius: 10px;
+  background: #fff;
+  color: #555;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rdd-quick-btn:hover {
+  border-color: #4caf50;
+  color: #4caf50;
+  background: #f0fdf4;
+}
+
+.rdd-quick-btn:active {
+  transform: scale(0.97);
+}
+
+/* ── Tabs ── */
+.rdd-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.rdd-tab {
+  flex: 1;
+  height: 36px;
+  border: 1.5px solid rgba(76, 175, 80, 0.2);
+  border-radius: 10px;
+  background: #fff;
+  color: #555;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rdd-tab:hover {
+  border-color: #4caf50;
+  color: #4caf50;
+  background: #f0fdf4;
+}
+
+.rdd-tab.active {
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.35);
+}
+
+/* ── List section ── */
+.rdd-list-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.rdd-list-section--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rdd-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rdd-list-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.rdd-list-count {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #4caf50;
+  background: rgba(76, 175, 80, 0.12);
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+/* Loading */
+.rdd-loading-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 48px;
+  background: #fff;
+  border-radius: 20px;
+  border: 1.5px solid rgba(76, 175, 80, 0.15);
+  text-align: center;
+}
+
+.rdd-loading-card p {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #888;
+  margin: 0;
+}
+
+.rdd-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(76, 175, 80, 0.15);
+  border-top-color: #4caf50;
+  border-radius: 50%;
+  animation: rddSpin 0.7s linear infinite;
+}
+
+@keyframes rddSpin {
+  to { transform: rotate(360deg); }
+}
+
+.rdd-error-card {
+  padding: 20px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1.5px solid rgba(239, 68, 68, 0.25);
+  text-align: center;
+  color: #ef4444;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* Empty */
+.rdd-empty-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 40px 20px;
+  background: #fff;
+  border-radius: 20px;
+  border: 1.5px solid rgba(76, 175, 80, 0.15);
+  text-align: center;
+}
+
+.rdd-empty-icon {
+  width: 52px;
+  height: 52px;
+  color: #c8e6c9;
+  animation: rddIconFloat 3s ease-in-out infinite;
+}
+
+.rdd-empty-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes rddIconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.rdd-empty-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 900;
+  color: #4caf50;
+}
+
+.rdd-empty-text {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #888;
+  line-height: 1.5;
+}
+
+/* ── Transaction cards ── */
+.rdd-transactions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rdd-transaction-card {
+  background: #fff;
+  border: 1.5px solid rgba(76, 175, 80, 0.18);
+  border-radius: 18px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s;
+  animation: rddCardIn 0.4s ease-out both;
+}
+
+.rdd-transaction-card:hover {
+  border-color: #4caf50;
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.15);
+  transform: translateY(-1px);
+}
+
+@keyframes rddCardIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.rdd-transaction-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.rdd-transaction-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rdd-transaction-icon.deposit {
+  background: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+}
+
+.rdd-transaction-icon.withdraw {
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+}
+
+.rdd-transaction-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.rdd-transaction-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rdd-transaction-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rdd-transaction-name {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.rdd-transaction-date {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #888;
+}
+
+.rdd-transaction-id {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: #bbb;
+}
+
+.rdd-transaction-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.rdd-transaction-amount {
+  font-size: 0.95rem;
+  font-weight: 900;
+}
+
+.rdd-transaction-amount.positive {
+  color: #2e7d32;
+}
+
+.rdd-transaction-amount.negative {
+  color: #d97706;
+}
+
+.rdd-transaction-method {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Status badges */
+.rdd-status-badge {
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.rdd-status-badge--paid {
+  background: rgba(76, 175, 80, 0.12);
+  color: #2e7d32;
+  border: 1px solid rgba(76, 175, 80, 0.25);
+}
+
+.rdd-status-badge--pending {
+  background: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.rdd-status-badge--processing {
+  background: rgba(21, 101, 192, 0.1);
+  color: #1565c0;
+  border: 1px solid rgba(21, 101, 192, 0.2);
+}
+
+.rdd-status-badge--failed {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* ── Decorative floating icons ── */
+.rdd-float-deco {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.rdd-deco {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: #1565c0;
+  opacity: 0;
+  animation: rddFloatUp 6s ease-in-out infinite;
+}
+
+.rdd-deco svg {
+  width: 100%;
+  height: 100%;
+}
+
+.rdd-deco-1 {
+  top: 20%;
+  left: 8%;
+  animation-delay: 0s;
+}
+
+.rdd-deco-2 {
+  top: 60%;
+  right: 10%;
+  animation-delay: 3s;
+}
+
+@keyframes rddFloatUp {
+  0% { opacity: 0; transform: translateY(30px) rotate(0deg) scale(0.5); }
+  15% { opacity: 0.6; transform: translateY(0) rotate(15deg) scale(1); }
+  85% { opacity: 0.4; transform: translateY(-40px) rotate(-10deg) scale(0.9); }
+  100% { opacity: 0; transform: translateY(-60px) rotate(-20deg) scale(0.6); }
+}

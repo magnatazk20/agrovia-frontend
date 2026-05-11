@@ -1,0 +1,379 @@
+/* ═══════════════════════════════════════════════════════════════
+   Salario Mensal
+═══════════════════════════════════════════════════════════════ */
+
+.ms-content {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 12px 60px;
+}
+
+/* ── Descrição ── */
+.ms-desc {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 16px;
+  padding: 16px 18px;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.ms-desc p {
+  margin: 0;
+  color: #8a6b3f;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* ── Banner header ─────────────────────────────────── */
+.ms-banner {
+  position: relative;
+  border-radius: 16px;
+  padding: 22px 20px 18px;
+  background: linear-gradient(135deg, #ff8a03 0%, #f7a93b 55%, #f7d981 100%);
+  border: none;
+  overflow: hidden;
+  box-shadow: 0 20px 44px rgba(255, 138, 3, 0.3);
+  color: #ffffff;
+  width: 100%;
+  max-width: 480px;
+  box-sizing: border-box;
+}
+
+.ms-banner__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ms-banner__glow {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.ms-banner__glow--1 {
+  width: 200px;
+  height: 200px;
+  top: -80px;
+  right: -50px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.20), transparent 70%);
+}
+
+.ms-banner__glow--2 {
+  width: 150px;
+  height: 150px;
+  bottom: -60px;
+  left: -40px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 70%);
+}
+
+.ms-banner__content {
+  position: relative;
+  z-index: 1;
+}
+
+.ms-banner__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background 0.15s ease;
+}
+
+.ms-banner__back:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.ms-banner__title {
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.ms-banner__desc {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+/* ── Modal de feedback ─────────────────────────────── */
+.ms-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(90, 61, 26, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: ms-overlay-in 0.2s ease;
+}
+
+@keyframes ms-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.ms-modal {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 18px;
+  padding: 28px 24px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  animation: ms-modal-in 0.25s ease;
+  box-shadow: 0 20px 60px rgba(90, 61, 26, 0.18);
+}
+
+@keyframes ms-modal-in {
+  from { opacity: 0; transform: scale(0.92) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.ms-modal__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.ms-modal--error .ms-modal__icon {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
+}
+
+.ms-modal--success .ms-modal__icon {
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+}
+
+.ms-modal__title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.ms-modal--error .ms-modal__title {
+  color: #f87171;
+}
+
+.ms-modal--success .ms-modal__title {
+  color: #34d399;
+}
+
+.ms-modal__message {
+  margin: 0;
+  color: #5a3d1a;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.ms-modal__btn {
+  margin-top: 6px;
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+}
+
+.ms-modal--error .ms-modal__btn {
+  background: rgba(248, 113, 113, 0.18);
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  color: #b91c1c;
+}
+
+.ms-modal--error .ms-modal__btn:hover {
+  filter: brightness(1.15);
+}
+
+.ms-modal--success .ms-modal__btn {
+  background: rgba(45, 122, 58, 0.18);
+  border: 1px solid rgba(45, 122, 58, 0.35);
+  color: #2d7a3a;
+}
+
+.ms-modal--success .ms-modal__btn:hover {
+  filter: brightness(1.15);
+}
+
+/* ── Empty / loading card ──────────────────────────── */
+.ms-empty-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  color: #8a6b3f;
+  font-weight: 600;
+  font-size: 0.9rem;
+  max-width: 480px;
+  width: 100%;
+}
+
+/* ── Grid ──────────────────────────────────────────── */
+.ms-grid {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Card ──────────────────────────────────────────── */
+.ms-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.ms-card:hover {
+  border-color: rgba(255, 138, 3, 0.40);
+  box-shadow: 0 8px 24px rgba(255, 138, 3, 0.15);
+}
+
+.ms-card__image {
+  width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 138, 3, 0.05);
+  border-left: 1px solid rgba(255, 138, 3, 0.12);
+  padding: 8px;
+  overflow: hidden;
+  border-radius: 0 16px 16px 0;
+}
+
+.ms-card__image img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* ── Card body ── */
+.ms-card__body {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.ms-card__left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ms-card__salary {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 22px 16px 18px;
+  background: linear-gradient(135deg, #ff8a03 0%, #f7a93b 55%, #f7d981 100%);
+  gap: 2px;
+}
+
+.ms-card__salary small {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.ms-card__salary strong {
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+}
+
+/* ── Requirements ── */
+.ms-card__requirements {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+}
+
+.ms-req {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+}
+
+.ms-req__label {
+  color: #8a6b3f;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ms-req__value {
+  color: #ff8a03;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+/* ── CTA Button ── */
+.ms-btn {
+  width: 100%;
+  border: 0;
+  border-radius: 0 0 0 0;
+  margin-top: auto;
+  padding: 14px 16px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  background: #ffffff;
+  color: #ff8a03;
+  letter-spacing: 0.3px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.ms-btn:hover:not(:disabled) {
+  background: #ff8a03;
+  color: #ffffff;
+}
+
+.ms-btn:disabled {
+  background: rgba(255, 245, 235, 0.6);
+  color: #8a6b3f;
+  cursor: not-allowed;
+}

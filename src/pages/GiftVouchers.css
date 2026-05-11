@@ -1,0 +1,223 @@
+.gift-vouchers-page {
+  background: inherit;
+  color: #5a3d1a;
+  padding-bottom: 5rem;
+  position: relative;
+  z-index: 0;
+}
+
+.gift-vouchers-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.gift-vouchers-list {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.gift-voucher-card {
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.85);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.gift-voucher-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  background: #ffe1b8;
+}
+
+.gift-voucher-content {
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.gift-voucher-title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.gift-voucher-description {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  min-height: 38px;
+}
+
+.gift-voucher-meta {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+}
+
+.gift-voucher-buy-btn {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.gift-vouchers-page .redeem-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(90, 61, 26, 0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.gift-vouchers-page .redeem-modal-card {
+  position: relative;
+  width: min(460px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  padding: 20px 18px 18px;
+  box-shadow: 0 24px 56px rgba(90, 61, 26, 0.18);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  color: #5a3d1a;
+  text-align: center;
+}
+
+.gift-vouchers-page .redeem-modal-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #ff8a03;
+  background: rgba(255, 138, 3, 0.15);
+  border: 1px solid rgba(255, 138, 3, 0.45);
+}
+
+.gift-vouchers-page .redeem-modal-card h2 {
+  margin: 10px 0 0;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  color: #5a3d1a;
+}
+
+.gift-vouchers-page .redeem-modal-message {
+  margin: 10px 0 0;
+  color: #8a6b3f;
+  font-size: 0.95rem;
+}
+
+.gift-vouchers-page .redeem-modal-highlight {
+  margin: 14px auto 0;
+  width: min(280px, 100%);
+  border-radius: 12px;
+  background: rgba(255, 245, 235, 0.8);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  padding: 12px 14px;
+  display: grid;
+  gap: 2px;
+}
+
+.gift-vouchers-page .redeem-modal-highlight span {
+  color: #8a6b3f;
+  font-size: 0.82rem;
+}
+
+.gift-vouchers-page .redeem-modal-highlight strong {
+  color: #ff8a03;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.gift-vouchers-page .redeem-modal-code {
+  margin: 12px 0 0;
+  color: #5a3d1a;
+  font-size: 0.92rem;
+}
+
+.gift-vouchers-page .redeem-modal-btn {
+  margin-top: 16px;
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #ffb347, #ff8a03);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .15s ease, filter .15s ease;
+}
+
+.gift-vouchers-page .redeem-modal-btn:hover {
+  filter: brightness(1.04);
+  transform: translateY(-1px);
+}
+
+.gift-vouchers-page .redeem-modal-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.gift-vouchers-page .redeem-modal-confetti-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gift-vouchers-page .confetti {
+  position: absolute;
+  top: -10%;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  opacity: 0.95;
+  animation: confettiFall 2.4s linear infinite;
+}
+
+.gift-vouchers-page .confetti-1 { left: 4%; background: #ff8a03; animation-delay: 0s; }
+.gift-vouchers-page .confetti-2 { left: 12%; background: #ffb347; animation-delay: .2s; }
+.gift-vouchers-page .confetti-3 { left: 20%; background: #2d7a3a; animation-delay: .35s; }
+.gift-vouchers-page .confetti-4 { left: 28%; background: #b91c1c; animation-delay: .5s; }
+.gift-vouchers-page .confetti-5 { left: 36%; background: #5a3d1a; animation-delay: .65s; }
+.gift-vouchers-page .confetti-6 { left: 44%; background: #ffe1b8; animation-delay: .8s; }
+.gift-vouchers-page .confetti-7 { left: 52%; background: #fec075; animation-delay: .95s; }
+.gift-vouchers-page .confetti-1:nth-child(8n) { left: 60%; animation-delay: 1.1s; }
+.gift-vouchers-page .confetti-2:nth-child(9n) { left: 68%; animation-delay: 1.25s; }
+.gift-vouchers-page .confetti-3:nth-child(10n) { left: 76%; animation-delay: 1.4s; }
+.gift-vouchers-page .confetti-4:nth-child(11n) { left: 84%; animation-delay: 1.55s; }
+.gift-vouchers-page .confetti-5:nth-child(12n) { left: 92%; animation-delay: 1.7s; }
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-8%) rotate(0deg);
+    opacity: .95;
+  }
+  100% {
+    transform: translateY(118vh) rotate(520deg);
+    opacity: .1;
+  }
+}
+
+.gift-confirm-actions {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+}
+
+.gift-confirm-actions .btn,
+.gift-confirm-actions .redeem-modal-btn {
+  width: 100%;
+}

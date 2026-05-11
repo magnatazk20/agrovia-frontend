@@ -1,0 +1,107 @@
+/* ─── VIP Photos Grid ─────────────────────────────────────── */
+
+.vip-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+  padding: 0 1rem 2rem;
+}
+
+.vip-photo-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 138, 3, 0.22);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s;
+}
+
+.vip-photo-card:hover {
+  border-color: #ff8a03;
+}
+
+.vip-photo-preview {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: rgba(255, 245, 235, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.vip-photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vip-photo-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: #8a6b3f;
+  font-size: 0.85rem;
+}
+
+.vip-photo-info {
+  padding: 0.9rem 1rem 0.5rem;
+}
+
+.vip-photo-info h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #5a3d1a;
+  font-weight: 600;
+}
+
+.vip-photo-info p {
+  margin: 0.25rem 0 0.4rem;
+  font-size: 0.85rem;
+  color: #8a6b3f;
+}
+
+.vip-photo-status {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.vip-photo-status.active {
+  background: rgba(45, 122, 58, 0.12);
+  color: #2d7a3a;
+}
+
+.vip-photo-status.inactive {
+  background: rgba(185, 28, 28, 0.12);
+  color: #b91c1c;
+}
+
+.vip-photo-upload-btn {
+  margin: 0.6rem 1rem 1rem;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff8a03, #e67600);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.vip-photo-upload-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.vip-photo-upload-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
