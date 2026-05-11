@@ -1009,6 +1009,89 @@
   color: #2e7d32;
 }
 
+/* ── Inline password card ── */
+.wd-pass-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  border: 1.5px solid rgba(76, 175, 80, 0.15);
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.wd-pass-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.wd-pass-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2px;
+}
+
+.wd-pass-header-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2e7d32;
+  flex-shrink: 0;
+}
+
+.wd-pass-header-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.wd-pass-header-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #333;
+  letter-spacing: 0.01em;
+}
+
+.wd-pass-error {
+  width: 100%;
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.wd-pass-forgot {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: 0;
+  text-align: left;
+  align-self: flex-start;
+}
+
+.wd-pass-forgot:hover {
+  color: #4caf50;
+}
+
 .wd-modal-error {
   width: 100%;
   margin: 0 0 8px;
@@ -1069,6 +1152,62 @@
   opacity: 0.7;
   cursor: not-allowed;
   transform: none !important;
+}
+
+.wd-modal-button {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 900;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  margin-top: 4px;
+  animation: wdBtnSlide 0.4s ease-out 0.5s both;
+  background: linear-gradient(135deg, #4caf50, #2e7d32);
+  color: #fff;
+  box-shadow: 0 6px 24px rgba(76, 175, 80, 0.5);
+}
+
+.wd-modal-button:hover {
+  filter: brightness(1.07);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(76, 175, 80, 0.6);
+}
+
+.wd-modal-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.wd-modal-button--ghost {
+  width: 100%;
+  height: 50px;
+  border: 1.5px solid rgba(76, 175, 80, 0.2);
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 900;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+  margin-top: 4px;
+  animation: wdBtnSlide 0.4s ease-out 0.55s both;
+  background: #fff;
+  color: #666;
+}
+
+.wd-modal-button--ghost:hover {
+  border-color: #4caf50;
+  color: #4caf50;
+  background: #f0fdf4;
+}
+
+.wd-modal-button--ghost:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
 .wd-modal-forgot {
