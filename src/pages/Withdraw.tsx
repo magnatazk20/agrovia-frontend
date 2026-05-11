@@ -192,8 +192,7 @@ export default function Withdraw() {
   const [selectedWallet, setSelectedWallet] = useState<WalletType>('balance')
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null)
   const [hasWithdrawPassword, setHasWithdrawPassword] = useState<boolean | null>(null)
-  const [showPasswordModal, setShowPasswordModal] = useState(false)
-  const [passwordModalError, setPasswordModalError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
 
   // VIP state
@@ -361,7 +360,9 @@ export default function Withdraw() {
     loadVipStatus()
   }, [navigate, token, user?.id])
 
-  const openPasswordModal = () => {
+  const handleSubmit = async () => {
+    setPasswordError('')
+
     if (!token || !user?.id) {
       setFeedback({ type: 'error', message: 'Usuario nao autenticado.' })
       navigate('/')
@@ -403,27 +404,8 @@ export default function Withdraw() {
       return
     }
 
-    setWithdrawPassword('')
-    setShowPassword(false)
-    setPasswordModalError('')
-    setShowPasswordModal(true)
-  }
-
-  const submitWithdraw = async () => {
-    setPasswordModalError('')
-
-    if (!token || !user?.id) {
-      setPasswordModalError('Usuario nao autenticado.')
-      return
-    }
-
-    if (!selectedAmount || selectedAmount <= 0) {
-      setPasswordModalError('Valor de saque invalido.')
-      return
-    }
-
     if (!withdrawPassword || withdrawPassword.length < 6) {
-      setPasswordModalError('Informe a senha de saque (minimo 6 caracteres).')
+      setPasswordError('Informe a senha de saque (minimo 6 caracteres).')
       return
     }
 
@@ -447,28 +429,50 @@ export default function Withdraw() {
         ok?: boolean
         error?: string
         message?: string
+        feePercent?: number
+        feeAmount?: number
+        netAmount?: number
         withdraw?: {
           id?: number
           amount?: number
+          feeAmount?: number
+          feePercent?: number
+          netAmount?: number
           externalId?: string | null
         }
       }
 
       if (!requestRes.ok || !requestData?.ok || !requestData.withdraw) {
-        setPasswordModalError(requestData?.error || 'Nao foi possivel solicitar o saque.')
+        setPasswordError(requestData?.error || 'Nao foi possivel solicitar o saque.')
         return
       }
 
-      setShowPasswordModal(false)
       setWithdrawPassword('')
 
       const requestedAt = new Date().toISOString()
       const externalId = requestData.withdraw.externalId ?? null
       const fallbackCode = `WD-REC-${Date.now()}-${user.id}`
 
+      const confirmedAmount = Number(requestData.withdraw.amount ?? selectedAmount)
+
+      // Prefer values from the API response; fall back to frontend calculation
+      const apiFeePercent = requestData.withdraw.feePercent ?? requestData.feePercent
+      const apiFeePct = apiFeePercent !== undefined ? Number(apiFeePercent) : withdrawFeePercent
+      const apiRawFee = requestData.withdraw.feeAmount ?? requestData.feeAmount
+      const confirmedFee = apiRawFee !== undefined
+        ? Number(apiRawFee)
+        : Number(((confirmedAmount * apiFeePct) / 100).toFixed(2))
+      const apiRawNet = requestData.withdraw.netAmount ?? requestData.netAmount
+      const confirmedNet = apiRawNet !== undefined
+        ? Number(apiRawNet)
+        : Number((confirmedAmount - confirmedFee).toFixed(2))
+
       navigate('/saque/comprovante', {
         state: {
-          amount: Number(requestData.withdraw.amount ?? selectedAmount),
+          amount: confirmedAmount,
+          feePercent: apiFeePct,
+          feeValue: confirmedFee,
+          netAmount: confirmedNet,
           externalId,
           receiptCode: externalId || fallbackCode,
           requestedAt,
@@ -479,18 +483,10 @@ export default function Withdraw() {
         },
       })
     } catch {
-      setPasswordModalError('Erro ao processar solicitacao de saque.')
+      setPasswordError('Erro ao processar solicitacao de saque.')
     } finally {
       setLoading(false)
     }
-  }
-
-  const closePasswordModal = () => {
-    if (loading) return
-    setShowPasswordModal(false)
-    setWithdrawPassword('')
-    setShowPassword(false)
-    setPasswordModalError('')
   }
 
   const weekdayNames = ['Domingo', 'Segunda', 'Terca', 'Quarta', 'Quinta', 'Sexta', 'Sabado']
@@ -730,12 +726,53 @@ export default function Withdraw() {
           </div>
         )}
 
+        {/* ── Password card ── */}
+        {hasWithdrawPassword !== false && (
+          <div className={`wd-pass-card ${mounted ? 'wd-pass-card--visible' : ''}`} style={{ transitionDelay: '320ms' }}>
+            <div className="wd-pass-header">
+              <span className="wd-pass-header-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="5" y="10" width="14" height="10" rx="2.2" /><path d="M8 10V7.7a4 4 0 0 1 8 0V10" />
+                </svg>
+              </span>
+              <span className="wd-pass-header-title">Senha de saque</span>
+            </div>
+            <div className="wd-modal-field">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                className="wd-cell-input"
+                placeholder="Digite sua senha de saque"
+                value={withdrawPassword}
+                maxLength={72}
+                autoComplete="current-password"
+                onChange={(e) =>
+                  setWithdrawPassword(
+                    String(e.target.value).replace(/[\x00-\x1F\x7F]/g, '').slice(0, 72)
+                  )
+                }
+                onKeyDown={(e) => { if (e.key === 'Enter' && !loading) handleSubmit() }}
+              />
+              <button type="button" className="wd-modal-eye" onClick={() => setShowPassword((s) => !s)}>
+                {showPassword ? 'Ocultar' : 'Mostrar'}
+              </button>
+            </div>
+            {passwordError ? <p className="wd-pass-error">{passwordError}</p> : null}
+            <button
+              type="button"
+              className="wd-pass-forgot"
+              onClick={() => navigate('/withdraw-password')}
+            >
+              Esqueci minha senha de saque
+            </button>
+          </div>
+        )}
+
         {/* ── Submit ── */}
         <button
           type="button"
           className={`wd-submit-btn ${!loading && isWithdrawWindowOpen && hasWithdrawPassword !== false && selectedAmount ? 'active' : ''}`}
           disabled={loading || !isWithdrawWindowOpen || hasWithdrawPassword === false || !selectedAmount}
-          onClick={openPasswordModal}
+          onClick={handleSubmit}
         >
           {loading ? (
             <span className="wd-btn-loading">
@@ -781,52 +818,6 @@ export default function Withdraw() {
             <p className="wd-modal-message">Voce ainda nao cadastrou uma senha de saque. Crie uma antes de solicitar.</p>
             <button type="button" className="wd-modal-button" onClick={() => navigate('/withdraw-password')}>Criar senha de saque</button>
             <button type="button" className="wd-modal-button wd-modal-button--ghost" onClick={() => navigate('/dashboard')}>Voltar ao inicio</button>
-          </div>
-        </div>
-      ) : null}
-
-      {/* ── Modal: confirmar senha ── */}
-      {showPasswordModal ? (
-        <div className="wd-modal-overlay" onClick={closePasswordModal}>
-          <div className="wd-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="wd-modal-icon wd-modal-icon--success">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><rect x="5" y="10" width="14" height="10" rx="2.2" /><path d="M8 10V7.7a4 4 0 0 1 8 0V10" /></svg>
-            </div>
-            <p className="wd-modal-message">
-              Digite sua senha de saque para confirmar <strong>{formatBRL(selectedAmount ?? 0)}</strong>.
-            </p>
-            <div className="wd-modal-field">
-              <input
-                type={showPassword ? 'text' : 'password'}
-                className="wd-cell-input"
-                placeholder="Senha de saque"
-                value={withdrawPassword}
-                maxLength={72}
-                autoComplete="current-password"
-                autoFocus
-                onChange={(e) =>
-                  setWithdrawPassword(
-                    String(e.target.value).replace(/[\x00-\x1F\x7F]/g, '').slice(0, 72)
-                  )
-                }
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' && !loading) submitWithdraw()
-                }}
-              />
-              <button type="button" className="wd-modal-eye" onClick={() => setShowPassword((s) => !s)}>
-                {showPassword ? 'Ocultar' : 'Mostrar'}
-              </button>
-            </div>
-            {passwordModalError ? <p className="wd-modal-error">{passwordModalError}</p> : null}
-            <button type="button" className="wd-modal-button" onClick={submitWithdraw} disabled={loading}>
-              {loading ? 'Processando...' : 'Confirmar saque'}
-            </button>
-            <button type="button" className="wd-modal-button wd-modal-button--ghost" onClick={closePasswordModal} disabled={loading}>
-              Cancelar
-            </button>
-            <button type="button" className="wd-modal-forgot" onClick={() => { setShowPasswordModal(false); navigate('/withdraw-password') }}>
-              Esqueci minha senha de saque
-            </button>
           </div>
         </div>
       ) : null}
