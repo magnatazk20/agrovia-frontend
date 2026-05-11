@@ -56,6 +56,7 @@ export default function Dashboard() {
   const [purchaseSuccess, setPurchaseSuccess] = useState<string | null>(null)
   const [showWelcomeModal, setShowWelcomeModal] = useState(true)
   const [commissionLevels, setCommissionLevels] = useState<CommissionLevel[]>([])
+  const [minWithdrawAmount, setMinWithdrawAmount] = useState(0)
   const [bannerIndex, setBannerIndex] = useState(0)
   const bannerTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
@@ -117,9 +118,22 @@ export default function Dashboard() {
       }
     }
 
+    const loadWithdrawConfig = async () => {
+      try {
+        const response = await fetch(`${API_URL}/api/admin/withdraw-config`)
+        if (!response.ok) return
+        const data = (await response.json()) as { ok?: boolean; config?: { minWithdrawAmount?: number } }
+        if (!data?.ok || !data.config) return
+        setMinWithdrawAmount(Number(data.config.minWithdrawAmount ?? 0))
+      } catch {
+        // silencioso
+      }
+    }
+
     loadSummary()
     loadCyclePlans()
     loadCommissionLevels()
+    loadWithdrawConfig()
   }, [user?.id])
 
   // Banner auto-slide
@@ -506,7 +520,7 @@ export default function Dashboard() {
               </div>
               <div className="av-welcome-stat">
                 <span>Saque mínimo</span>
-                <strong>R$ 5,00</strong>
+                <strong>{minWithdrawAmount > 0 ? formatBRL(minWithdrawAmount) : '—'}</strong>
               </div>
               <div className="av-welcome-stat">
                 <span>Planos disponíveis</span>
