@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import FloatingToast from '../components/FloatingToast'
 import './Login.css'
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3333'
@@ -19,25 +18,13 @@ export default function Login() {
   const [password, setPassword] = useState('')
   const [remember, setRemember] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
-  const [message, setMessage] = useState('')
-  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const [toastOpen, setToastOpen] = useState(false)
-  const [toastMessage, setToastMessage] = useState('')
-  const [toastType, setToastType] = useState<'success' | 'error'>('success')
-  const [successModal, setSuccessModal] = useState(false)
-
-  const showToast = (msg: string, type: 'success' | 'error') => {
-    setToastMessage(msg)
-    setToastType(type)
-    setToastOpen(true)
-  }
+  const [modal, setModal] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setLoading(true)
-    setMessage('')
-    setError('')
+    setModal(null)
 
     try {
       const response = await fetch(`${API_URL}/api/auth/login`, {
@@ -49,8 +36,7 @@ export default function Login() {
       const data = (await response.json()) as AuthResponse
 
       if (!response.ok) {
-        setError(data.error ?? 'Falha ao fazer login.')
-        showToast(data.error ?? 'Falha ao fazer login.', 'error')
+        setModal({ type: 'error', message: data.error ?? 'Falha ao fazer login.' })
         return
       }
 
@@ -58,10 +44,9 @@ export default function Login() {
       storage.setItem('token', data.token ?? '')
       storage.setItem('user', JSON.stringify(data.user ?? {}))
 
-      setSuccessModal(true)
+      setModal({ type: 'success', message: data.message ?? 'Login realizado com sucesso.' })
     } catch {
-      setError('Não foi possível conectar ao servidor.')
-      showToast('Não foi possível conectar ao servidor.', 'error')
+      setModal({ type: 'error', message: 'Não foi possível conectar ao servidor.' })
     } finally {
       setLoading(false)
     }
@@ -171,40 +156,42 @@ export default function Login() {
         </div>
       </form>
 
-      {error ? <p className="lo-feedback lo-feedback--err">{error}</p> : null}
-
-      {successModal ? (
+      {modal ? (
         <div className="agrovia-modal-overlay">
           <div className="agrovia-modal">
-            <div className="agrovia-modal__icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#2e7d32" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
+            <div className="agrovia-modal__icon" style={modal.type === 'error' ? { background: '#fdecea' } : undefined}>
+              {modal.type === 'success' ? (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#2e7d32" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#c62828" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              )}
             </div>
-            <h2 className="agrovia-modal__title">Login realizado!</h2>
-            <p className="agrovia-modal__text">Bem-vindo de volta. Você será redirecionado agora.</p>
+            <h2 className="agrovia-modal__title">
+              {modal.type === 'success' ? 'Login realizado!' : 'Erro ao fazer login'}
+            </h2>
+            <p className="agrovia-modal__text">{modal.message}</p>
             <button
               type="button"
               className="agrovia-modal__btn"
+              style={modal.type === 'error' ? { background: 'linear-gradient(135deg,#e53935,#b71c1c)', boxShadow: '0 4px 14px rgba(183,28,28,0.35)' } : undefined}
               onClick={() => {
-                setSuccessModal(false)
-                const returnTo = sessionStorage.getItem('loginReturnTo') ?? '/dashboard'
-                sessionStorage.removeItem('loginReturnTo')
-                navigate(returnTo)
+                if (modal.type === 'success') {
+                  const returnTo = sessionStorage.getItem('loginReturnTo') ?? '/dashboard'
+                  sessionStorage.removeItem('loginReturnTo')
+                  navigate(returnTo)
+                }
+                setModal(null)
               }}
             >
-              Continuar
+              {modal.type === 'success' ? 'Continuar' : 'Tentar novamente'}
             </button>
           </div>
         </div>
       ) : null}
-
-      <FloatingToast
-        open={toastOpen}
-        type={toastType}
-        message={toastMessage}
-        onClose={() => setToastOpen(false)}
-      />
     </main>
   )
 }

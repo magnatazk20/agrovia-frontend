@@ -11,7 +11,7 @@ type BrandingConfig = {
   description: string
 }
 
-const DEFAULT_TITLE = 'Agrovia Plataforma'
+const DEFAULT_TITLE = 'AGROVIA Plataforma'
 const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:3333'
 
 const readToken = () => {
