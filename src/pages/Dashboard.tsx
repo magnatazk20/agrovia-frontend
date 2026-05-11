@@ -153,14 +153,20 @@ export default function Dashboard() {
   const confirmBuyCycle = async () => {
     if (!user?.id || !selectedPlan || isBuying) return
 
+    const token = localStorage.getItem('token') ?? sessionStorage.getItem('token')
+
     setIsBuying(true)
     try {
       const response = await fetch(`${API_URL}/api/cycle-products/purchase`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        },
         body: JSON.stringify({
           userId: user.id,
           cycleProductId: selectedPlan.id,
+          investAmount: selectedPlan.amount,
         }),
       })
 
@@ -169,10 +175,16 @@ export default function Dashboard() {
         error?: string
         message?: string
         balanceAfter?: number
+        required?: number
+        available?: number
       }
 
       if (!response.ok || !data?.ok) {
-        setPurchaseError(data?.error ?? 'Não foi possível adquirir este ciclo.')
+        let errorMsg = data?.error ?? 'Não foi possível adquirir este ciclo.'
+        if (data?.required !== undefined && data?.available !== undefined) {
+          errorMsg += ` Necessário: ${formatBRL(data.required)}, disponível: ${formatBRL(data.available)}.`
+        }
+        setPurchaseError(errorMsg)
         return
       }
 
