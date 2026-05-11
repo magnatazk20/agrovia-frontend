@@ -213,11 +213,6 @@ export default function Dashboard() {
   return (
     <main className="av-page">
 
-      {/* ── Top brand strip ── */}
-      <div className="av-top-strip">
-        <img src="/favicon.svg" alt="Logo Agrovia" className="av-top-logo" />
-      </div>
-
       {/* ── Banner slider ── */}
       <div className="av-banner-wrap">
         <div className="av-banner-stage">
