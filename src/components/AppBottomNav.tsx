@@ -9,8 +9,8 @@ const navItems = [
     activeIcon: '/nav-icons/inicio-active-26-DGXCTSp8.png',
   },
   {
-    path: '/cycle-products',
-    label: 'Promoção',
+    path: '/position',
+    label: 'Equipe',
     icon: '/nav-icons/promo-1-ZY9--ZOm.png',
     activeIcon: '/nav-icons/promo-active-26-Dms8X1Aw.png',
   },
