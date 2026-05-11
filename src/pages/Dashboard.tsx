@@ -15,6 +15,7 @@ type CycleProduct = {
   description: string
   amount: number
   profit: number
+  profitPercent: number
   cycleDays: number
   imageUrl: string
   isActive: boolean
@@ -333,7 +334,12 @@ export default function Dashboard() {
         ) : (
           cyclePlans.map((plan, idx) => {
             const estoque = Math.max(0, Number(plan.stockQuantity ?? 0))
-            const dailyProfit = plan.cycleDays > 0 ? plan.profit / plan.cycleDays : 0
+            const dailyProfit = plan.profitPercent > 0
+              ? plan.amount * (plan.profitPercent / 100)
+              : plan.cycleDays > 0 ? plan.profit / plan.cycleDays : 0
+            const totalProfit = plan.profitPercent > 0
+              ? dailyProfit * plan.cycleDays
+              : plan.profit
 
             return (
               <article key={plan.id} className="av-product-card">
@@ -374,7 +380,7 @@ export default function Dashboard() {
                       </div>
                       <div className="av-stat-item">
                         <div className="av-stat-label">Renda total</div>
-                        <div className="av-stat-value">{formatBRL(plan.profit)}</div>
+                        <div className="av-stat-value">{formatBRL(totalProfit)}</div>
                       </div>
                     </div>
                   </div>
