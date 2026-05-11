@@ -482,9 +482,6 @@ export default function Dashboard() {
       {showWelcomeModal && (
         <div className="av-welcome-backdrop" onClick={() => setShowWelcomeModal(false)}>
           <div className="av-welcome-card" onClick={(e) => e.stopPropagation()}>
-            <div className="av-welcome-head">
-              <img src="/favicon.svg" alt="Agrovia" className="av-welcome-logo" />
-            </div>
             <div className="av-welcome-title">Ganhe no primeiro passo</div>
             <p className="av-welcome-desc">Ative um plano e comece a gerar renda diária na plataforma.</p>
 
