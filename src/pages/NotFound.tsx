@@ -6,9 +6,10 @@ export default function NotFound() {
     <main className="notfound-page">
       <h1>404</h1>
       <p>Page not found</p>
-      <Link to="/dashboard">Go to Dashboard</Link>
-      <br />
-      <Link to="/">Login</Link>
+      <div className="notfound-actions">
+        <Link to="/dashboard">Go to Dashboard</Link>
+        <Link to="/">Login</Link>
+      </div>
     </main>
   )
 }

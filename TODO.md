@@ -1,7 +1,3 @@
-# TODO: Adicionar navbar inferior na página VIP
-
-- [ ] Criar TODO.md ✅
-- [ ] Editar src/pages/Vip.tsx: adicionar import AppBottomNav e renderizar no final do main ✅
-- [ ] Completar AppBottomNav.css com estilos ✅
-- [ ] Verificar no browser localhost:5173/vip ✅ (Browser tool disabled; recarregue a página)
-- [ ] Completar tarefa ✅
+- [x] Atualizar estilo da página 404 (cores e aparência geral)
+- [x] Ajustar estrutura dos links da 404 para aparência de botões
+- [ ] Validar resultado visual e preparar commit

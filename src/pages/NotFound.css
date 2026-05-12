@@ -4,18 +4,41 @@
   place-items: center;
   padding: 24px;
   text-align: center;
+  background: radial-gradient(circle at top, #1f2a44 0%, #0f172a 55%, #020617 100%);
+  color: #e2e8f0;
 }
 
 .notfound-page h1 {
-  font-size: 56px;
+  font-size: 64px;
   margin: 0;
+  color: #f59e0b;
+  text-shadow: 0 8px 24px rgba(245, 158, 11, 0.35);
 }
 
 .notfound-page p {
   font-size: 18px;
-  margin: 8px 0;
+  margin: 12px 0 20px;
+  color: #cbd5e1;
+}
+
+.notfound-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .notfound-page a {
-  color: #ff8a03;
+  text-decoration: none;
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  color: #0f172a;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 10px;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.notfound-page a:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
 }
