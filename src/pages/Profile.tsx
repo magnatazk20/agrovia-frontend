@@ -162,7 +162,7 @@ export default function Profile() {
   const [todayIncome, setTodayIncome] = useState(0)
   const [teamTotal, setTeamTotal] = useState(0)
   const [totalWithdrawals, setTotalWithdrawals] = useState(0)
-  const [userBadge, setUserBadge] = useState('Estagiário')
+  const [userBadge, setUserBadge] = useState('Agrovia A')
   const [vipLevelName, setVipLevelName] = useState('')
   const [activeCyclePlanName, setActiveCyclePlanName] = useState('')
   const [vipExpiresAt, setVipExpiresAt] = useState<string | null>(null)
@@ -224,11 +224,11 @@ export default function Profile() {
           const d = (await vipRes.json()) as VipResponse
           if (d?.ok && d?.hasVip && d.vip) {
             setVipLevelName(String(d.vip.levelName ?? '').trim())
-            setUserBadge(d.vip.levelName || 'Estagiário')
+            setUserBadge(d.vip.levelName || 'Agrovia A')
             setVipExpiresAt(d.vip.expiresAt ?? null)
             setVipImageUrl(String(d.vip.avatarUrl ?? ''))
           } else {
-            setUserBadge('Estagiário')
+            setUserBadge('Agrovia A')
             setVipExpiresAt(null)
           }
         }
@@ -348,7 +348,7 @@ export default function Profile() {
               <div className="pf-user-info">
                 <h2 className="pf-user-name">{user?.phone ?? user?.name ?? 'Usuário'}</h2>
                 <span className={`pf-badge pf-badge--${badgeTheme}`}>
-                  {activeCyclePlanName || userBadge}
+                  {activeCyclePlanName || userBadge || 'Agrovia A'}
                 </span>
               </div>
             </div>
