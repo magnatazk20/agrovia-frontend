@@ -108,6 +108,7 @@ export default function AdminUserDetails() {
 
   const [adjustAmount, setAdjustAmount] = useState('')
   const [adjustOperation, setAdjustOperation] = useState<'add' | 'subtract'>('add')
+  const [adjustBalanceType, setAdjustBalanceType] = useState<'balance' | 'commission_balance'>('balance')
   const [adjustReason, setAdjustReason] = useState('')
   const [adjustLoading, setAdjustLoading] = useState(false)
   const [adjustFeedback, setAdjustFeedback] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
@@ -317,6 +318,7 @@ export default function AdminUserDetails() {
         body: JSON.stringify({
           amount: parsedAmount,
           operation: adjustOperation,
+          balanceType: adjustBalanceType,
           reason: adjustReason.trim() || undefined,
         }),
       })
@@ -330,6 +332,7 @@ export default function AdminUserDetails() {
       setAdjustFeedback({ type: 'success', message: data?.message ?? 'Saldo ajustado com sucesso.' })
       setAdjustAmount('')
       setAdjustReason('')
+      setAdjustBalanceType('balance')
       await loadUserDetails()
     } catch {
       setAdjustFeedback({ type: 'error', message: 'Erro de conexão ao ajustar saldo.' })
@@ -714,6 +717,17 @@ export default function AdminUserDetails() {
                     >
                       <option value="add">Adicionar saldo</option>
                       <option value="subtract">Retirar saldo</option>
+                    </select>
+                  </label>
+
+                  <label>
+                    <span>Onde ajustar o saldo</span>
+                    <select
+                      value={adjustBalanceType}
+                      onChange={(e) => setAdjustBalanceType(e.target.value as 'balance' | 'commission_balance')}
+                    >
+                      <option value="balance">Saldo normal (carteira principal)</option>
+                      <option value="commission_balance">Saldo comissão (carteira de comissão)</option>
                     </select>
                   </label>
 
