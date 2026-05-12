@@ -65,6 +65,7 @@ type UserDetailsResponse = {
     is_banned: number
     created_at?: string
     balance: number
+    commissionBalance: number
     shopBalance: number
     telegramConectado?: number | boolean
     telegramConnection?: {
@@ -812,6 +813,10 @@ export default function AdminUserDetails() {
               <article className="admin-kpi-card">
                 <p>Saldo atual</p>
                 <strong>{formatBRL(user.balance)}</strong>
+              </article>
+              <article className="admin-kpi-card">
+                <p>Saldo de comissão</p>
+                <strong>{formatBRL(user.commissionBalance ?? 0)}</strong>
               </article>
               <article className="admin-kpi-card">
                 <p>Saldo da loja (gift cards)</p>
